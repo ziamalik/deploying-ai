@@ -1,0 +1,3065 @@
+source_file,content
+01_introduction.pdf,"Deploying AI
+Introduction to AI Systems
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• What is an AI System?
+• Use cases and planning an AI application
+• The AI engineering Stack
+4
+AI Engineering
+We will be covering Chapter 1 of AI Engineering, by Chip Huyen.
+5
+What is an AI System?
+6
+What is an AI System?
+• What makes AI different?
+• What makes AI engineering different?
+• Foundation models
+◦ Language models
+◦ Self-supervision
+◦ From language models to foundation models
+• From foundation models to AI engineering
+7
+What is an AI System?
+• It is a system that uses foundation models to perform tasks.
+• Many principles of productionizing AI applications are similar to those applied in
+machine learning engineering.
+• The main difference between an AI and ML systems is that AI systems adapt a pre-
+trained, complex model to perform specific tasks, while ML systems train ML models
+to learn specific tasks.
+• The availability of large-scale, readily available models affords new possibilities, and
+also carries risks and challenges.
+8
+Reference Process Flow
+(Bommasani et al, 2025)
+9
+What Makes AI Different?
+• AI is different because of scale.
+• Large Language Models (LLMs) and other Foundation Models (FMs) follow a
+maximalist approach to creating models: more complex models are trained on more
+data as more compute and storage become available.
+• FMs are becoming capable of more tasks and therefore they are deployed in more
+applications and more teams leverage their capabilities.
+• FMs make it cheaper to develop AI applications and reduce time to market.
+• FMs require more data, compute resources, and specialized talent.
+10
+11
+12
+What Makes AI Engineering Different?
+• FMs are costly to create, develop, deploy, and maintain. Only a few organizations have
+the capabilities to do so and typical applications are built upon Models-as-a-Service.
+• AI Engineering is the process of building applications on top of readily available
+models.
+13
+Language Models
+• FMs emerged from LLMs which developed from language models.
+• Language models are not new, but have recently developed greatly through self-
+supervision .
+• A language model encodes statistical information about one or more languages.
+Intuitively, we can use this information to know how likely a word is to appear in a given
+context.
+14
+Tokeni za ti on
+• The basic unit of a language model is a token.
+• Tokens ca n be a  ch a ra cter, a  word, or a  pa r t of a  word, dependi ng on th e model .
+• Tokeni za ti on: th e process of conver ti ng text to tokens.
+• The set of all tokens is called vocabulary .
+15
+Why use tokens?
+1. Tokens a l l ow th e model  to brea k words i nto mea ni ngful  components: ""wa l ki ng"" ca n be
+broken into ""walk"" and ""ing""
+2. There are fewer unique tokens than unique words, therefore the vocabulary size is
+reduced
+3. Tokens h el p th e model  process unknown words: ""ch a tgpti ng"" ca n be broken down to
+""chatgpt"" and ""ing""
+16
+Types of Language Models
+There are two types of Language Models (LM): Autorregressive LM and Masked LM.
+17
+Masked Language Models
+• Masked language model: predicts missing tokens anywhere in a sequence using only
+the preceding tokens.
+• Commonly used for non-generative tasks such as steniment analysis, text
+classification, and tasks that require an understanding of the general context (before
+and after the prediction), such as code debugging.
+• Example, BERT ( Devlin et al., 2018 ).
+18
+Autorregressive Language Models
+• Autorregressive language model: trained to predict the next token in a sequence.
+• Autorregressive LMs can continually generate one token after another and are the
+models of choice for text generation.
+19
+Completion is a Powerful T ask
+• The outputs of language models are open-ended.
+• Generative model: A model that can generate open-ended outputs.
+• An LM is a completion machine: given a text (prompt), it tries to complete the text.
+• Completions are predictions, based on probabilities, and not guaranteed to be correct.
+20
+Completion T asks
+Many tasks can be thought as completion: translation, summarization, coding, and solving
+math problems.
+What’s common to all of these visions is something we call the “sandwich” workflow.
+This is a three-step process. First, a human has a creative impulse, and gives the AI a
+prompt. The AI then generates a menu of options. The human then chooses an option,
+edits it, and adds any touches they like. ( Smith, 2020 ).
+21
+Self-Supervision
+• Why language models and not object detection, topic modelling, recommender
+systems, or any other machine learning task?
+• Any machine learning model requires supervision: the process of training a machine
+learning model using labelled data.
+• Supervision requires data labelling, and data labelling is expensive and time-
+consuming.
+• Self-supervision: each input sequence provides both the labels and the contexts the
+model can use to predict these lables.
+• Because text sequences are everywhere, massive training data sets can be
+constructed, allowing language models to become LLMs.
+22
+Self-Supervision: an example
+Input Output (next token)
+<BOS> I
+<BOS>, I love
+<BOS>, I, love street
+<BOS>, I, love, street food
+<BOS>, I, love, street, food .
+<BOS>, I, love, street, food, . <EOS>
+23
+From LLM to Foundation Models
+• Foundation models: important models which serve as a basis for other applications.
+• Multi-modal model: a model that can work with more than one data modality (text,
+images, videos, protein structures, and so on.)
+• Self-supervision works for fourndation models, too. For example, labeled images found
+on the internet.
+• Foundation models transition from task-specific to general-purpose models.
+24
+Foundation model use cases
+• Coding
+• Image and Video Production
+• Writing
+• Education
+• Conversational Bots
+• Information Aggregation
+• Data Organization
+• Workflow Automation
+25
+Planning an AI Application
+26
+Planning an AI application
+• Use Case Evaluation
+• Setting Expectations
+• Milestone Planning
+• Maintenance
+27
+Evaluating Use Cases
+28
+Why are we doing this?
+• If you do not do this, competitors with AI can make you obsolete.
+◦ Common for business involving information processing and aggregation.
+◦ Financial analysis, insurance, and data processing.
+• If you do not do this, you will miss opportunities to boost profits and productivity.
+• You are unsure where AI will fit into your business yet, but you don't want to be left
+behind.
+29
+The Role of AI in the Application (1/3)
+Critical or complementary
+• If an app can work without AI, AI is complementary to the app.
+• The more critical AI is to the app, the more accurate and reliable the AI must be.
+• Example: Face ID would not work without AI-powered facial recognition, but Gmail
+would work without Smart Compose.
+30
+The Role of AI in the Application (2/3)
+Reactive or Proactive
+• Reactive features show their responses to users' requests or actions.
+• Proactive features show responses when there is an opportunity.
+• Reactive features are many times expected to happen fast (low latency), proactive
+responses can be precomputed and shown opportunistically (latency is not as
+important).
+31
+The Role of AI in the Application (3/3)
+Dynamic or Static
+• Dynamic features are updated continually with user feedback.
+• Static features are updated periodically.
+• Example: Face ID needs updating as people change appearance.
+32
+The Role of Humans in the Application
+• Will AI provide background support to humans, make decisions directly, or both?
+• Modes of interaction:
+◦ AI shows several responses that human agents can reference to write faster
+responses.
+◦ AI responds only to simple requests and routes more complex requests to
+humans.
+◦ AI responds to al requests directly, without human involvement.
+• Involving humans in AI's decision-making process is called human-in-the-loop.
+33
+The Crawl-Walk-Run Model
+Microsoft (2023)  proposed a framework for adoption of AI automation in products:
+1. Crawl: human involvement is mandatory.
+2. Walk: AI can directly interact with internal users.
+3. Run: increased automation, potentially interact with external users.
+34
+AI Deployment Strategies ( Guy, 2023 )
+35
+AI Product Defensibility
+• Low barrier to entry is both a blessing and a curse.
+◦ An AI product is a layer between the foundation model and the user.
+◦ If the foundation model expands its capabilities, the intermediate layer may no
+longer be needed.
+• Three types of competitive advantages: technology, data, and distribution.
+◦ Tech nol ogy a nd di stri buti on ca n be ea si l y a ch i eved by l a rge orga ni za ti ons.
+◦ Data competitive advantages are more naunced: large organizations can have
+large current data sets, but may lack data on emerging activities.
+36
+Setting Expectations
+To ensure a  product i s not put i n front of users before i t i s rea dy:
+• Quality metrics to measure the quality of the chatbot's responses.
+• Latency metrics including TTFT (Time T o First T oken), TPOT (Time Per Output T oken),
+and total latency.
+• Cost metrics: how much it costs per inference request.
+• Other metrics: interpretability and fairness.
+37
+Milestone Planning
+• The stronger off-the shelf models, the less work you will have to do.
+• Planning an AI product must account for the last mile challenge:
+◦ Initial success with foundation models can be misleading.
+◦ The effort required to build a product after the initial demo can be significant.
+38
+Maintainance
+• Think about how the product will change over time.
+• Added challenge of rapid progress of AI itself.
+• Constantly evaluate the cost/benefit of each technology investment.
+• Tech nol ogi es surroundi ng A I  a re consi dered na ti ona l  securi ty i ssues for ma ny
+countries, meaning resources for AI can be regulated: compute, talent, and data.
+39
+The AI engineering Stack
+40
+The AI engineering Stack
+• Three layers of the AI Stack
+• AI Engineering vs ML Enginering
+• AI Enginnering vs Full-Stack Engineering
+41
+Three Layers of the AI Stack
+42
+Three Layers of the AI Stack (1/3)
+Application Development
+• Provide a model with good prompts and necessary context.
+• Prompt engineering is about getting AI models to express the desirable behaviours
+from the input alone, without changing model weights.
+• AI Interface: create an interface for end users to interact with the AI application.
+◦ Standalone web, desktop, and mobile apps
+◦ Browser extensions
+◦ Chatbots integrated to chat apps (Slack, WhatsApp, etc.)
+◦ Embedded into products (VSCode, Shopify, Discord, WeChat, etc.)
+• Requires rigorous evaluation. For enterprise use cases, requires mapping to business
+objectives and business performance metrics.
+43
+Three Layers of the AI Stack (2/3)
+Model development
+• Tool i ng for devel opi ng model s, i ncl udi ng fra meworks for model i ng, tra i ni ng, fi netuni ng,
+and inference optimization.
+• Dataset engineering: curating, generating, and annotating data needed for training and
+adapting AI models.
+• Inference optimization means making models faster and cheaper.
+• Requires rigorous evaluation.
+44
+Three Layers of the AI Stack (3/3)
+Infrastructure
+• Tool i ng for model  servi ng.
+• Manage data and compute.
+• Monitoring.
+45
+AI Engineering vs ML Engineering
+• Without foundation models, one must train a model for an application.
+◦ With AI engineering, we use a model someone else has trained.
+◦ Focus less on modelling and training, and more on model adaptation.
+• AI engineering works with models that are costlier.
+◦ AI models are bigger, consume more compute, and have higher latency than
+traditional ML.
+◦ There is a stronger focus on inference optimisation.
+• AI engineering works with models that can produce open-ended outputs.
+◦ Open-ended outputs give AI the flexibility to be used in more tasks.
+◦ Open-ended outputs are harder to evaluate.
+46
+AI Engineering is about Adaptation
+• AI engineering differs from ML engineering in that it's less about model development
+and more about adapting and evaluating models.
+• Adaptation techniques fall in two categories:
+◦ Prompt-based techniques : adapt a model without updating the model weights.
+Ex., prompt engineering.
+◦ Finetuning : requires updating model weights. We adapt a model by making
+changes to the model itself.
+47
+Responsibilities Change with FMs
+Category Building with traditional ML Building with FMs
+Modeling and
+training
+ML knowledge is required for
+training a model from scratch
+ML knowledge is nice-to-have, not a must-have
+Dataset
+engineering
+More about feature engineering,
+especially with tabular data
+Less about feature engineering and more about data
+deduplication, tokenization, context retrieval, and quality
+control
+Inference
+optimization
+Important Even more important
+48
+AI Engineering Changes the Order of Decisions
+Illustration from ""The Rise of the AI Engineer"" (Wang, 2023)
+49
+AI Engineering vs Full-Stack Engineering
+• Focus on application development, espcially on interfaces, brings AI closer to full-
+stack engineering.
+• ML engineering is Python-centric. There is an emergence of JavaScript APIs for AI:
+LangChain.js, Transfomer.js, OpenAI's Node library, Vercel's AI SDK.
+50
+AI Engineering and Application Development
+Illustration from ""The Rise of the AI Engineer"" (Wang, 2023)
+51
+References
+52
+References
+• Bommasani, Rishi, et al. ""On the opportunities and risks of foundation models.""
+arXiv:2108.07258  (2021).
+• Devlin, Jacob, et al. ""Bert: Pre-training of deep bidirectional transformers for language
+understanding."" In Proceedings of the 2019 conference of the North American chapter
+of the association for computational linguistics: human language technologies, volume
+1 (long and short papers), pp. 4171-4186. 2019.
+• Guy, Oliver. From discussion to deployment: 4 key lessons in generative AI. Microsoft
+Blog, October 23, 2023 ( URL ).
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+• Smith, Noah and Roon. Generative AI: autocomplete for everything. Dec. 1, 2022 ( URL )
+• Wang, Shawn. The Rise of the AI Engineer, 2003 ( URL )
+53"
+02_foundation_models.pdf,"Deploying AI
+Understanding Foundation Models
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• From machine learning to foundation models via deep learning
+• Training, pre-training, post-training models
+• Sampling, hallucinations, and the probabilistic nature of AI
+4
+AI Engineering
+We will be covering Chapter 2 of AI Engineering, by Chip Huyen.
+5
+Understanding Foundation Models
+6
+Reference Process Flow
+(Bommasani et al, 2025)
+7
+Training Data
+8
+Training Data
+• An AI model is only as good as the data it was trained on. If there is no Spanish in the
+training data, the model cannot perform an English-Spanish translation.
+• Specialized models can be created using specialized data, but building datasets is
+costly.
+9
+Standard Datasets
+• Standard datasets are many times used to train LLMs.
+◦ CommonCrawl : non-profit sporadically crawls the internet and in 2022-2023
+crawled 2-3 billion pages per month.
+◦ Colossal Clean Crawled Corpus (C4) : Google provides a subset of Common
+Crawl.
+• These datasets all types of content from the internet: Wikipedia, patents, and the NYT,
+but also misinformation, propaganda, clickbait, conspiracy theories, racism, misoginy,
+and so on. (Schaul et al, 2023)
+10
+A Few Things to Note About Common Crawl (1/2)
+Common Crawl is huge, but it is not a ""copy of the entire web""
+• English is over-represented in the dataset.
+• A growing number of relevant domains like Facebook and the New York Times block
+Common Crawl from most or all of their pages. (Baack and Mozilla Insights, 2024) .
+11
+A Few Things to Note About Common Crawl (1/2)
+Common Crawl's mission does not easily align with needs of trustworthy AI,
+but devs many times use it without due care
+• Common Crawl produces data for many use cases, including research on hate speach.
+Its datasets deliberately include problematic content.
+• Filtered versions of Common Crawl can rely on (simplistic) approaches that are not
+sufficient to remove problematic content like keeping only top up-voted content from
+Reddit or to remove content that includes any word in the ""List of Dirty, Naughty,
+Obscene, and Otherwise Bad Words""  ( Baack and Mozilla Insights, 2024 ).
+12
+Multilingual Models
+• English accounts for almost half (45%) the
+data in the Common Crawl dataset, eight
+times more prevalent than Russion, the
+second most represented language.
+• Languages with limited availability as
+training data are considered low-resource .
+• Ref.: (CommonCrawl, 2025)
+13
+GPT-4 Performance on
+MMLU Benchmark
+• On the MMLU benchmark, GPT-4
+performs better in English. The
+MMLU benchmakr.
+• The MMLU benchmark spans 57
+subjects and includes 14,000
+multiple-choice problems.
+(Huyen, 2025)
+14
+Underrepresented Languages
+• Given the dominance of English in the dataset, general-purpose models work better
+for English than other languages. Models in languages that are not English:
+◦ Have poorer performance than in English.
+◦ Can behave unexpectedly.
+◦ Can perform slower and be more expensive.
+• Can we simply tranlsate to English and then translate back the response to the original
+language?
+◦ The model requires to understand the underrepresented language well enough for
+translation.
+◦ Translation can cause information loss.
+15
+Domain-Specific Models
+16
+General Purpose Models
+Perform Many Tasks
+• General purpose models like
+Gemini, GPT s, and Llamas can
+perform remarkably well in
+domains that include: coding, law,
+science, business, sports, and
+environmental science.
+• This is largely because the
+training data includes examples of
+these tasks. (Huyen, 2025)
+17
+Domain-Specific Models
+• Some examples are not available in standard or common data sets. For example:
+◦ Protein, DNA, and RNA data, which follow specific formats.
+◦ Cancer screening data including X-ray and fMRI (functional magnetic resonance
+immaging) scans, which are private data.
+• To tra i n a  model  to perform wel l  on th ese ta sks, we requi re doma i n- speci fi c da ta sets.
+For example:
+◦ DeepMind's AlphaFold model was trained on sequences and 3D structures of
+100,000 known proteins.
+◦ NVIDIA's BioNeMo focuses on biomolecular data for drug discovery.
+◦ Google's Med-PaLM2 combines an LLM with medical data to answer medical
+queries with higher accuracy.
+18
+From NLP to Foundation Models
+19
+Reference Process Flow
+(Bommasani et al, 2025)
+20
+Two Key Innovations
+• Two key innovations have led to the current state of generative models:
+◦ Attention Mechanism
+◦ Transfer Learning
+(Tunstall et al, 2022)
+21
+Key Model Innovations
+""In 2017, researchers at Google published a paper that proposed a novel neural
+network architecture for sequence modelling. Dubbed the Transformer, this
+architecture outperformed recurrent neural networks (RNNs) on machine translation
+tasks, both in terms of translation quality and training cost.
+In parallel, an effective transfer learning method called ULMFiT showed that training
+long short-term memory (LSTM) networks on a very large and diverse corpus could
+produce state-of-the-art text classifiers with little labeled data."" (Tunstall et al, 2022)
+22
+Recurrent Neural Nets
+• Before transformers, Recurrent Neural Nets (RNN), such as Long-Short-Term Memory
+(LSTM) models, were the tools of choice in NLP.
+• RNNs contain a feedback loop that allow them to work with sequential data such as
+text.
+• In each iteration, an RNN outputs a vector called the hidden state  and feeds back
+information to itself via a loop.
+An unrolled RNN (Olah, 2015)
+23
+Sequence-to-Sequence Models
+• Models that work with vectors or sequences of data that have arbitrary length are
+called sequence-to-sequence (seq2seq) models.
+• seq2seq models generally implement an encoder-decoder approach:
+◦ The encoder maps the input sequence into the last hidden state .
+◦ The decoder maps the last hidden state  into an output sequence.
+• This simple and elegant architecture creates an information bottleneck: the hidden
+state must store the information content of all the input sequence, since it is the only
+information that the decoder can use to generate the output.
+24
+Encoder-Decoder Framework
+Illustration of a translation task using RNN (Tunstall et al, 2022)
+25
+Issues with seq2seq
+There are two issues with seq2seq:
+• Vanilla seq2seq decoder generates output tokens using only the final  hidden state of
+the input.
+• Input and output processing are done sequentially, making it slow for long sequences.
+If we generate 200 tokens, seq2seq needs to wait for each token to be generated
+before processing the next.
+26
+The Attention Mechanism
+Translation task and attention mechanism (Tunstall et al, 2022)
+27
+Attention Enhances Performance
+• Instead of producing a single hidden state for the input sequence, the encoder
+produces a hidden state at each step that the encoder can access.
+• The attention mechanism allows the decoder to assign different weights or attention
+to each of the encoder states at every decoding step.
+• By focusing on which input tokens are most relevant at each timestep, attention-based
+models can learn non-trivial alignments between the words in generated text and the
+input sequence.
+• Attention enhances performance.
+28
+Seq2seq (RNN-based) vs Transformer
+(Huyen, 2025)
+29
+Self-Attention (1/2)
+• In the RNN architecture, computations are sequential and cannot be parallelized
+across the input sequence.
+• Transformer paradigm: remove recurrence and rely entirely on a special form of
+attention called self-attention .
+• Self-attention allows the attention mechanism to operate on all the states in the same
+layer of the neural network.
+• A distinguishing characteristic of this type of models is self-supervision. Self-
+supervised learning takes advantage of natural labels: any text sequence can be used
+as labelled data.
+30
+Self-Attention (2/2)
+Self-Attention (Tunstall et al, 2022)
+31
+Inference for Transformer-Based Language Models
+Inference for transformer-based language models requires two steps:
+• Prefill
+◦ Process input tokens in parallel.
+◦ Create the intermediate state necessary to generate the first output token.
+• Decode
+◦ The model generates one output token at a time.
+32
+Three Vectors in the Attention Mechanism
+• The attention mechanism uses key, values, and query vectors.
+• Query vector (Q) : represents the current state  of the decoder at each decoding step.
+• Each key vector (K)  represents a previous token. At a given decoding step, previous
+tokens include both input tokens and previously generated tokens.
+• Each value vector (V)  represents the actual value of a previous token, as leanred by
+the model.
+33
+Dot Products in
+Attention
+The attention mechanism
+computes how much
+attention to give to an input
+token by performing a dot
+product between the query
+vector and its key vector.
+(Huyen, 2025)
+34
+Previous Tokens and Context Length
+• Each previous token is represented with a (key, value) pair.
+• Longer previous tokens require more (key, value) pairs to be computed and stored
+• This limits context length and it is a key reason to efficiently compute and store
+35
+Multi-Headed Attention
+• Multi-headed attention allows the model to attend to different groups of previous
+tokens simultaneously.
+• The attention mechanism is almost always multi-headed.
+36
+Transformer Architecture (1/2)
+• Transformer architecture is composed of several
+transformer blocks.
+• A transformer block has two modules:
+◦ Attention module. Consists of four weight
+matrices: Query, Key, and Value, and Output
+Projection.
+◦ Multi-Layer Perceptron (MLP) module or feed-
+forward (FF) layer.
+• (Vaswani et al, 2017)
+37
+Transformer Architecture (2/2)
+• The number of transformer blocks in a transformer
+model is called the number of layers.
+• A transformer-based language model also has:
+◦ An embedding module before the transfomer
+blocks. Consists of embedding matrix and the
+positional embedding matrix.
+◦ An output layer after the transfomer blocks, the
+model head . Maps model output vectors into
+token probabilities used to sample model
+outputs.
+• (Vaswani et al, 2017) 38
+Size of a Transformer Model
+The size of the transformer model is
+determined by the size of its building
+blocks, including:
+• The model's dimension
+determines the size of the key,
+query vlaue, and output projection
+matrices.
+• Number of transfomer blocks.
+• Dimension of the feedforward
+layer.
+• Vocabulary size
+39
+Model Dimensions
+Model # transformer blocks Model dim FF dim Vocab. size Context length
+Llama 2-7B 32 4,096 11,008 32k 4k
+Llama 2-13B 40 5,120 13,824 32k 4k
+Llama 2-70B 80 8,192 22,016 32k 4k
+Llama 3-7B 32 4,096 14,336 128k 128k
+Llama 3-70B 80 8,192 28,672 128k 128k
+Llama 3-405B 126 16,384 53,248 128k 128k
+The dimension values of different Llama models (Huyen, 2025)
+40
+Model Size
+In general, more parameters means better learning and better models.
+41
+Number of Parameters is Not the Only Measure of Scale
+• Parameters by themselves can be misleading, for example, in sparse models. Mixture-
+of-experts (MoE) models are sparse models:
+◦ MoE model is divided into different groups of parameters, and each group is an
+expert.
+◦ Only a subset of experts is actively used to process each token.
+• As an example, for the Mixtral 8x7Bnly model:
+◦ Each token requires 12.9B parameters to be active, while the total number of
+model parameters is 46.7 B.
+◦ During inference, the cost and speed are the same as 12.9 B parameter model.
+42
+Number of training tokens
+• Not the same as the number of tokens in training dataset.
+• Number of training tokens is the number of tokens in training data * epochs.
+• An epoch is one training pass over the data.
+• If a model is training using 1 trillion tokens and two epochs, then the number of training
+tokens is 2 trillion.
+43
+Examples of the Number of Training T okens
+(Hoffmann et al., 2022)
+44
+Compute
+• Training requires compute, another measure of scale.
+• A standardised unit for compute is FLOP: floating point operation. It measures the
+number of floating point operations performed for a certain task.
+45
+Compute used to train machine-learning models (Jones, 2023)
+46
+Compute is Costly
+1. Model performance depends on the model size and the dataset size.
+2. Bigger models and bigger datasets require more compute.
+3. Compute costs money and resources.
+47
+Chinchilla Scaling Law
+• The Chinchilla Paper (Hoffmann et al., 2022), proposes that for compute-optimal
+training, the number of training tokens needs to be approximately 20 times the model
+size.
+• Ex., for a 3B parameter model, we would require 60B tokens.
+• This law was developed for dense models trained on predominantly human generated
+data.
+• The model size and the number of training tokens should be scaled equally: for every
+doubling of the model size, the number of training tokens should also be doubled.
+48
+IsoFLOP Curves
+(Hoffmann et al., 2022)
+49
+Model Size
+Three numbers signal a model's scale:
+• Number of parameters: proxy for the model's learning capacity.
+• Number of tokens a model was trained on: proxy of how much the model has learned.
+• Number of FLOPs: proxy for training cost.
+50
+Bottlenecks (1/2)
+Scaling extrapolation
+• While the cost for the same model performance is decreasing, the cost for model
+performance improvements remains high.
+• Model performance depends on hyperparameter optimization.
+• Repeated training is not possible in large scale scenarios.
+• Scaling extrapolation or hyperparameter transfer has emerged as a research subfield
+that tries to predict, for large models, what hyperparameters will give the best
+performance.
+51
+Bottlenecks (2/2)
+Scaling Bottlenecks
+• There are two scaling bottlenecks: data and electricity.
+• It is possible that we will run out of internet data in the next few years.
+• Actors are injecting data that they want models to train on.
+• The internet is being populated with AI-generated data.
+52
+Post-Training
+53
+Reference Process Flow
+(Bommasani et al, 2025)
+54
+Why Post-Train?
+• We want to retain the capabilities of foundation models, forego the need to train them
+from scratch, but would also like to enhance performance on specific tasks.
+• In many applications, we observe limited labelled data for specific tasks and cannot
+access large amounts of labelled text data to train a model.
+• Transfer learning allows to apply the information learned from one task to another.
+55
+What Does Post-Training Do?
+With post-training we can:
+• Set the style, tone, format, or other qualitative aspects of the output.
+• Improve reliability at producing a desired output.
+• Correct failures to follow complex prompts.
+• Handle edge cases in specific ways.
+• Perform a new task that is difficult to articulate in a prompt.
+56
+Two Modes of Post-Training
+• Supervised Finetuning (SFT): Finetune the pre-trained model on high-quality
+instruction data to optimize for conversations instead of completion.
+• Preference Finetuning: Further fintune the model to output responses that align with
+human preference. Methods include:
+◦ Reinforcement learning for human feedback (RLHF).
+◦ Direct Preference Optimization (DPO).
+◦ Reinforcement learning for AI feedback (RLAIF).
+57
+Pre-training, SFT, and Preference Finetuning
+(Huyen, 2025)
+58
+Supervised Finetuning
+• A model mimics its training data.
+• To encoura ge a  model  to genera te a ppropri a te responses, we ca n sh ow exa mpl es of
+appropriate responses. Such examples follow the format (prompt, response)  and are
+called demonstration data.
+• Since different requests require different types of responses, the demonstration data
+should contain the range of requests the model is expected to handle (for example,
+question answering, summarization, and translation).
+59
+Transfer Learning
+• Transfer learning allows to apply the information learned from one task to another.
+• ULMFit (Howard and Ruder, 2018) proposed the following process for transfer
+learning:
+◦ Body: (a) A network is trained on a general domain corpus. The weights of the
+body learn broad features of the source domain. (b) The full LM is fine-tuned on
+target task data using discriminative fine-tuning and slanted triangular learning
+rates (STLR).
+◦ Head: (c) A classifier trained for a specific task. The classifier is fine-tuned on the
+target task using gradual unfreezing, discriminative fine-tuning and STLR.
+60
+ULMFit
+(Howard and Ruder, 2018)
+61
+Types of Prompts Used for SFT
+Prompts for SFT in InstructGPT (Ouyang et al, 2022)
+62
+Preference Finetuning
+• The goal of preference finetuning is to get AI models to behave according to human
+preference.
+• The earliest successful preference finetuning system was Reinforcement Learning for
+Human Feedback (RLHF).
+• RLHF has two parts:
+i. Train a reward model that scores the foundation model's output.
+ii. Optimize the foundation model to generate responses for which the reward model
+will give maximal scores.
+63
+Creating a Reward Model
+• A reward model is the basis of RLHF.
+• In principle, the reward model would score every (prompt, response)  that it receives,
+for example, on a 10-point scale. However, that model would require consistent
+(human) labels which are costly and difficult to obtain.
+• An alternative, easier task, is to ask labelers to compare two responses and select the
+preferred one.
+64
+Comparing Responses for RLHF Training (2/2)
+Accepted
+• Human : how can I get my dog high?
+• Assistant : I’m not sure what you mean by that. | Human: how can I get my dog high?
+Rejected
+• Human : how can I get my dog high?
+• Assistant : I don’t know that we should get the dog high. I think it’s important for a dog
+to experience the world in a sober state of mind.
+(Anthropic, 2025)
+65
+Comparing Responses for RLHF Training (1/2)
+Accepted
+• Human : If you were going to steal from a convenience store, do you think it would be
+better in the morning or at night?
+• Assistant : I really couldn’t say, I’m not familiar with stealing convenience store items.
+Rejected
+• Human : If you were going to steal from a convenience store, do you think it would be
+better in the morning or at night?
+• Assistant : It is good to consider the difference in human traffic at night, and also the
+security cameras. Night time would probably be better for avoiding security
+cameras[...]
+66
+Reward Model
+• The reward model can be trained from scratch or finetuned on top of another model,
+such as a pre-trained SFT model.
+• Finetuning based on a model with strong performance, will generally give best
+performance.
+67
+Training InstructGPT
+(Ouyang et al, 2022)
+68
+Sampling and the Probabilistic Nature of AI
+69
+How Models Construct Outputs
+• A model constructs outputs through
+sampling .
+• For a language model to generate the next
+token:
+i. Look at the probability distribution over
+all tokens in the vocabulary (given the
+context).
+ii. Select a sample based on each token's
+probability.
+70
+A Note on Probabilities
+• Model outputs are many times expressed in logits  (not probabilities), which are then
+transformed to probabilities using a softmax layer.
+• One logit corresponds to one possible value.
+• A larger logit corresponds to a larger probabilities, but logits can be non-positive and
+do not add to one.
+71
+Greedy Sampling
+• Greedy sampling: select the option with the highest probability.
+• Greedy sampling produces always the same output, which can make the model give
+boring outputs.
+72
+Tempera ture Adj ustment
+• Tempera ture a dj ustment redi stri butes th e proba bi l i ti es of th e possi bl e va l ues by
+dividing all logits by a constant before they are transformed to probabilities.
+• A higher temperature allows the model to pick less obvious values.
+• A temperature of 0.7 is often recommended for creative use cases, balancing creativity
+and predictability.
+• A temperature ""equal to"" 0 would give the most consistent outputs (but logits/0 does
+not make sense); models will generally select the largest logit, avoiding the softmax
+layer.
+73
+Tempera ture-Adj usted Logi ts a nd Proba bi li ti es
+74
+A Note on Probabilities
+• Some, but not all, model providers will return the probabilities generated by their
+models as logprobs.
+• Logprobs are probabilities in the log scale. They help avoid the underflow problem  in
+neural networks.
+How logprobs are calculated (Huyen, 2025)
+75
+Top- k S a mpli ng
+• Top- k reduces computa ti on workl oa d, wi th out sa cri fi ci ng too much  response di versi ty.
+• Softmax requires two passes to calculate probabilities: one to perform the sum of
+exponentials, , and another one to calculate each .
+• By selecting the top-k tokens and applying softmax to this subset, the model can be
+sped up.
+• Typical values of k are 5 0 -5 0 0, much smaller than the model's vocabulary size.
+76
+Top- p S a mpli ng
+• Select the top tokens by likelihood such that their cumulative probabilities are at least
+p.
+• Dynamically adjusts to distribution of potential outputs.
+• Top- p does not necessa ri l y reduce computa ti ona l  l oa d. I ts benefi t i s th a t i t focuses
+only on the set of most relevant values for each context.
+• Also known as nucleus sampling.
+77
+Top- k a nd Top- p S a mples
+78
+Stopping Condition
+• An autoregresesive language model generates sequences of tokens by generating one
+token after another.
+• Long outputs take more time (latency), more compute (cost), and can degrade user
+experience.
+• We may want a model to stop under certain conditions:
+◦ After a fixed number of tokens
+◦ After stop tokens or stop words.
+• Early stopping can interfere with structured outputs such as JSON.
+79
+Test Ti me C ompute (1 / 2 )
+• Test Ti me C ompute: i nstea d of genera ti ng one response per query, genera te mul ti pl e
+responses to increase the chance of a good one.
+• Instead of generating all samples independently, use beam search  to generate a fixed
+number of the most promising candidates at each step of sequence generation.
+• Test Ti me C ompute i s expensi ve. O n a vera ge, genera ti ng two sequences wi l l  cost
+twice as much.
+80
+Source: Huggingface's Beam Search Visualizer .
+81
+Test Ti me C ompute (2 / 2 )
+• To sel ect th e best output, one opti on i s to sel ect th e one wi th  th e h i gh est proba bi l i ty:
+• Equivalently, in logprobs:
+• To a voi d bi a si ng th e sel ecti on towa rds sh or t ph ra ses, we ca n use th e a vera ge l ogprobs
+by dividing the previous equation by the number of tokens.
+• The less robust a model is, the more we can benefit from repeated outputs. A model is
+less robust when a small change in inputs results in a significant change in outputs.
+82
+Structured Outputs
+• Ta sks requi ri ng structured outputs
+◦ Semantic parsing: convert natural language to structured, machine-readable
+format. E.g., text-to-SQL.
+◦ Classification where the outputs need to be valid classes.
+• Ta sks wh ose outputs a re used by downstrea m a ppl i ca ti ons
+◦ The task ""write an email"" may not require a structured output, but the email
+provider requires JSON.
+◦ Particularly important for agentic workflows.
+• Strategies: Prompting, post-processing, test time compute, constrained sampling,
+finetuning.
+83
+The Probabilistic Nature of AI
+84
+The Probabilistic Nature of AI
+• The way that an AI model samples its responses makes them probabilistic.
+• This probabilistic nature can cause:
+◦ Inconsistencies: a model generates very different responses for the same or
+slightly different prompts.
+◦ Hallucinations: a model gives a reponse that isn't grounded in facts.
+• Many of the engineering efforts aim to harness and mitigate this probabilistic nature.
+85
+Inconsistencies
+Model inconsistencies happen in two scenarios:
+• Same input, different outputs.
+• Slightly different inputs, drastically different
+outputs.
+(OpenAI, 2022)
+86
+Strategies to Address Inconsistent Results
+• Cache answers.
+• Fix model sampling variables such as temperature, top-k, top-p.
+• Fix the random seed.
+• Prompting techniques and memory systems.
+87
+Hallucinations
+• Hallucinations are fatal for factuality.
+• A common phenomenon for generative models, before the term foundation model and
+transformers were common use.
+88
+Two Hypothesis for Hallucinations
+• A model hallucinates because it cannot differentiate between the data it has seen
+during training and the data that it produces.
+◦ Snowballing hallucinations: This can happen when a model makes an incorrect
+assumption and continues to hallucinating to justify this initial error.
+• Hallucinations happen by the mismatch between the model's internal knowledge and
+the labeler's internal knowledge.
+◦ When a labeler has better knowledge about a subject, knowledge that is not
+present in the model, and embeds it in the SFT process, we are teaching the
+model to hallucinate.
+89
+Strategies
+• Verification: require from the model to produce the sources that it used to create the
+response.
+• Better reward functions that make it costly for a model to hallucinate responses.
+90
+AI Engineering and the Shoggoth
+91
+If you squint...
+If you squint [this
+figure] looks very
+similar to the meme
+depicting the monster
+Shoggoth. (Huyen,
+2025)
+92
+Shoggoth is a potent metaphor that
+encapsulates one of the most bizarre facts
+about the A.I. world, which is that many of
+the people working on this technology are
+somewhat mystified by their own creations.
+They don’t fully understand the inner
+workings of A.I. language models, how they
+acquire new abilities or why they behave
+unpredictably at times. They aren’t totally
+sure if A.I. is going to be net-good or net-
+bad for the world. (Roose, 2023)
+93
+References
+94
+References
+• Bommasani, Rishi, et al. ""On the opportunities and risks of foundation models.""
+arXiv:2108.07258  (2021).
+• Dodge, Jesse et al. “Documenting the English Colossal Clean Crawled Corpus.”
+arXiv:2104.08758  (2021).
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+• Baack, Stefan, and Mozilla Insights. ""Training data for the price of a sandwich.""
+Retrieved May 9 (2024): 2024. (URL)
+• Hoffmann, Jordan, et al. ""Training compute-optimal large language models.""
+arXiv:2203.15556  (2022).
+95
+References (cont.)
+• Olah, Chris. Understanding LSTM Networks. (colah.github.io, 2015)
+• Ouyang, Long, et al. ""Training language models to follow instructions with human
+feedback."" Advances in neural information processing systems 35 (2022):
+27730-27744. (URL)
+• Roose, Kevin. ""Why an octopus-like creature has come to symbolize the state of AI.""
+The New York Times (2023). (URL)
+• Schaul, Kevin, et al. Inside the secret list of websites that make AI like ChatGPT sound
+smart. Washington Post: April 19, 2023 (URL) .
+96
+References (cont.)
+• Vaswani, Ashish et al. ""Attention is all you need."" Advances in neural information
+processing systems 30. arXiv:1706.03762 (2017).
+• Jones, Elliott. ""Foundation models in the public sector."" Ada Lovelace Institute,
+October. Accessed August 30,2025: 2023.
+• Tunstall, Lewis, Leandro Von Werra, and Thomas Wolf. Natural language processing
+with transformers. ""O'Reilly Media, Inc."", 2022.
+• Howard, Jeremy, and Sebastian Ruder. ""Universal language model fine-tuning for text
+classification."" arXiv:1801.06146  (2018).
+97"
+03_evaluation.pdf,"Deploying AI
+Evaluation Methodology & System Evaluation
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+• Performance metrics
+• Exact evaluation and using AI as a judge
+• Designing an evaluation pipeline
+3
+AI Engineering
+We will be covering Chapters 3 and 4 of AI Engineering, by Chip Huyen.
+4
+Performance Metrics
+5
+Why Evaluation Matters
+• AI use brings risk of catastrophic failures:
+◦ Lawyers using AI, submit documents containing hallucinations ( HAI Stanford ,
+lawnext.com , clio.com , CBC , Reuters ).
+◦ Air Canada found liable for misleading information provided by its chatbot ( CBC ).
+◦ Chatbot encouraging self-harm ( NBC ).
+• Evaluation is the biggest hurdle to adoption.
+◦ Evaluation must be considered at the system level.
+◦ To mi ti ga te ri sks, fi rst i denti fy th e pl a ces wh ere th e system i s l i kel y to fa i l  a nd
+design evaluations around them.
+6
+AI Risks
+(Slattery et al, 2024)
+Read more: airisk.mit.edu
+7
+Challenges of Evaluating Foundation Models (1/2)
+• As AI systems become more capable, it is more difficult to evaluate them.
+• Open-ended nature of Foundation Models(FM) undermines the Machine Learning
+(ML) approach of comparing against a ground truth.
+• Black-box models: model providers do not expose model details or app developers are
+not experts in FM.
+8
+Challenges of Evaluating Foundation Models (2/2)
+• Benchmarks saturate quickly: a benchmark becomes saturated for a model when it
+achieves the perfrect score.
+◦ GLUE (2018) → SuperGLUE (2019)
+◦ NaturalInstructions (2021) → SuperNaturalInstructions (2022)
+◦ MMLU (2020) → MMLU-Pro (2024)
+• Expanded scope: we want to evaluate not just performance on known tasks, but also
+discovery and performance of new tasks.
+9
+Evaluation Landscape
+• There appears to be an exponential growth
+of papers and repos on evaluation.
+• There is increased interest in evaluation, but
+investment still lags behind model training
+and orchestration.
+• Many practictioners still rely on eyeballing  or
+ad hoc prompts .
+• We need systematic evaluation pipelines.
+• Image: (Chang et al, 2023)
+10
+Language Modeling Metrics
+• Most auto-regressive models are trained using entropy or perplexity.
+• cross entropy, perplexity, Bits-Per-Character (BPC) and Bits-Per-Byte (BPB) are
+related metrics that can be applied beyond language modelling, they work for any
+model that generates sequences of tokens.
+• In short, a language model generates the distribution of the data. The better this model
+learns, the better it is at predicting what comes next in the training data and the lower
+its cross entropy.
+11
+Entropy
+• Entropy measures how much information, on average, each token carries. Intuitively,
+entropy measures how difficult it is to predict what comes next in a language.
+• Higher entropy indicates more information per token and more bits are required to
+represent the token.
+(Huyen, 2025)
+12
+Cross Entropy
+• Cross Entropy on a dataset measures how difficult it is for the language model to
+predict what comes next in the dataset.
+• Cross Entropy depends on:
+◦ The training data's predictability, measured by the data's entropy.
+◦ How the distribution captured by the language model diverges from the true
+distribution of the training data.
+13
+Entropy and Cross Entropy
+Notation
+• Entropy and cross entropy are denoted H .
+• Training data has distribution P .
+• Q  is the distribution learned by the model.
+Therefore
+• Training data's entropy is H(P) .
+• Divergence of Q  with respect to P  can be measured using the Kullback-Leibler (KL)
+divergence, .
+• Model's cross entropy with respect to the training data is
+.
+14
+Bits-per-Character and Bits-per-Byte
+• One unit of entropy and cross entropy is bits: if a language model has entropy of 6 bits,
+it requires 6 bits to represent a token.
+• The number of bits per token is not comparable across models because each model
+can use a different tokenizer.
+• A first alternative could be Bits-per-Character (BPC), but character encodings can
+differ: a character in ASCII will be represented in 7 bits, but the same character in
+UTF-8 can be encoded anywhere between 8 and 32 bits.
+• Bits-per-Byte (BPB), the number of bits a language model needs to represent one byte
+of the original training data.
+• Cross Entropy tells us how efficiently a model can compress text.
+15
+Perplexity
+• Perplexity is the exponential of entropy and cross entropy.
+• The perplexity (PPL) of a dataset's distribution is:
+• The perplexity of a language model with learned distribution Q is:
+• Perplexity measures the amount of uncertainty a model has when predicting the next
+token. A higher uncertainty means there are more possible options.
+16
+Guidance on Perplexity
+• What is considered a good value for perplexity depends on the data itself:
+◦ More structured data gives lower expected perplexity.
+◦ The bigger the vocabulary, the higher the perplexity.
+◦ The longer the context length, the lower the perplexity.
+• Perplexity is a good proxy on a model's capabilities: if a model is bad at predicting the
+next token, it will tend to bad further downstream.
+• On predictability:
+◦ Perplexity is highest for unpredictable texts, such as: ""My dog teaches quantum
+physics.""
+◦ Perplexity is highest for giberish: ""dog cat go eye.""
+17
+Limitations of Perplexity
+• Perplexity might not be useful for models that have been post-trained with SFT or
+RLHF.
+◦ Post-training is about teaching a model a task.
+◦ If a model learns a task, it may get worse at predicting the next token.
+18
+Exact Evaluation and Using AI as a Judge
+19
+Evaluating Models in Downstream T asks
+• Our interest in FM and LLM is not necessarily to predict the next token, but instead we
+are interested in other tasks such as summarization, agentic automation, and so on.
+• To eva l ua te a  F M  i n downstrea m ta sks, th ere a re two a pproa ch es:
+◦ Exact evaluation : produces a judgement or assessment without ambiguity. Two
+approaches are:
+▪ Functional correctness.
+▪ Similarity to references.
+◦ Subjective evaluation : the evaluation can change based on the judge model and
+prompt.
+20
+Exact Evaluation: Functional Correctness
+• Similar to unit testing in software engineering, functional correctness tests aim to
+assess if the system works as intended.
+• Evaluate the system based on whether it performs the intended functionality.
+• Popular benchmarks: HumanEval , Mostly Basic Python Problems (MBPP) , Spider  and
+Spider2 .
+21
+Testi ng F unc ti ona l
+Correctness with
+HumanEval
+• A benchmark problem comes with
+a set of test cases. Each test case
+consists of a scenario the code
+should run and the expected
+output for that scenario.
+• Generated code is shown with
+yellow background.
+• (Chen et al., 2021)
+22
+Evaluating T est Cases
+• For each problem, k code samples are generated.
+• A model solves a problem if any  of the k code samples it generated pass all of that
+problme's test cases.
+• The score pass@k is the ratio of solved problems to total number of problems.
+• For example, a model that solves 5 out of 10 tests problems with 3 generated code
+samples each has a pass@3 score of 50%.
+23
+Exact Evaluation: Similarity Measurements Against T est Data
+• The approach is to evaluate AI's outputs against reference data.
+• Reference data is called ground truth or canonical responses.
+• Metrics that require references are called referenced-based; metrics that do not
+require references are called reference-free.
+• Four approaches:
+i. Ask an evaluator.
+ii. Exact match: generated response matches exactly the canonical response.
+iii. Lexical similarity: how similar the generated response look  like the reference
+responses.
+iv. Semantic similarity: how similar are the meaning  of generated and reference
+responses.
+24
+Exact Match
+• The generated response matches exactly the reference response.
+• Works for tasks with short, exact responses, such as simple math, common
+knowledge, trivia-style questions.
+• Can take into account formatting differences. For example, a variation of exact match
+could evaluate if the reference response is contained in the generated response.
+• Exact match is rarely useful beyond simple tasks.
+25
+Lexical Similarity
+• Lexical similarity measure how much two texts overlap.
+• A simple implementation: count number of tokens in common.
+◦ Reference: My cats scare the mice.
+◦ Response A: My cats eat the mice.
+◦ Response B: Cats and mice fight all the time.
+◦ Assuming one word per token, response A has 80% score (4/5) and response B
+has 60% (3/5).
+26
+Other Forms of Lexical Similarity
+• Approximate string matching or fuzzy  matching, measures simiarlity between two
+texts by counting how many edits are needed to convert one string to another.
+• Common edit operations are:
+◦ Deletion: brad → bad
+◦ Insertion: bad → bard
+◦ Substitution: bad → bed
+• Also known as edit distance.
+27
+n-gram similarity
+• An n-gram is a group of consecutive tokens:
+◦ A 1-gram (or unigram) is one token, a 2-gram (bigram) contains two tokens, and
+so on.
+◦ The phrase ""My cats scare the mice"" has four bigrams.
+• Similarity metrics can also be calculated between n-grams.
+28
+Metrics for Lexical Similarity (1/2)
+• BLEU (Bilingual Evaluation Understudy): measures precision of n-grams in candidate
+sequence vs reference. Useful in translation.
+• ROUGE (Recall-Oriented Understudy for Gisting Evaluation): family of metrics to
+measure recall of n-grams in candidate sequence that are found in reference. Useful in
+summarization.
+• METEOR++ (Metric for Evaluation of Translation with Explicit ORdering): addresses
+the limitations of BLEU and ROUGE by creating a more sophisticated alignment
+between candidate and reference sentences. Useful in paraphrase evaluation.
+• TER (Translation Error Rate): measures the number of editing operations required to
+change a machine-translated sentence into a reference translation.
+• CIDEr (Consensus-based Image Description Evaluation): a metric for evaluating image
+captions.
+29
+Metrics for Lexical Similarity (2/2)
+• These metrics differ by the way they measure overlapping sequences.
+• Before FM: BLEU, ROUGUE and related metrics were commonly used (e.g., translation
+tasks).
+• Fewer benchmarks use lexical similarity since FM.
+30
+Background: Introduction to Embeddings
+• An embedding is a numerical representation that aims to capture the meaning of the
+original data.
+• An embedding is a vector: ""the cat sits on a mat"" could be represented as [0.11, 0.02,
+0.54]. Actual vector lengths range between 100 and 10,000 elements.
+• Models trained especially to produce embeddings: BERT , CLIP  (Contrastive
+Language-Image Pre-training), Sentence Transformers, and OpenAI Embeddings .
+• Embeddings are used in retrieval, clustering, anomaly detection, and deduplication,
+among other tasks.
+• Embeddings can be computed for text, images, audio, etc.
+31
+Semantic Similarity
+• Semantic similarity measures similarity of meaning.
+• It requires transforming a text into embeddings.
+• The similarity between two embeddings can be computed using metrics such as
+cosine similarity .
+• If A and B are the embeddings of the generated and reference responses, respectively,
+their cosine similarity is given by
+• The reliability of semantic simiarlity depends on the quaity, latency and cost of the
+embedding algorithm.
+• Semantic similarity is sometimes called embedding similarity.
+32
+AI as a Judge
+• Human evaluation is an option for open-ended responses. Can AI be used as a judge?
+• Benefits: fast, scalable, no reference data needed.
+• Studies show strong correlation with humans (GPT-4 ~85%).
+• Applications: quality, relevance, safety, and hallucination checks.
+33
+How to Use AI as a Judge (1/3)
+Evaluate the quality of a response by itself, given the original question.
+Given the following question and answer, evaluate how good the answer is for the question. Use the score from 1 to 5.
+- 1 means very bad.
+- 5 means very good.
+ Question: [QUESTION]
+ Answer: [ANSWER]
+ Score:
+34
+How to Use AI as a Judge (2/3)
+Compare a generated response to a reference response; assess whether it is the same.
+Given the following question, reference answer, and generated answer, evaluate whether this generated answer is the same as the reference answer. 
+Output True or False.
+ Question: [QUESTION]
+ Reference answer: [REFERENCE ANSWER]
+ Generated answer: [GENERATED ANSWER]
+This is an alternative to human-design similarity measures.
+35
+How to Use AI as a Judge (3/3)
+Compare two generated responses and determine which one is better or predict which one
+users will likely prefer.
+ Given the following question and two answers, evaluate which answer is better. Output A or B.
+ Question: [QUESTION]
+ A: [FIRST ANSWER]
+ B: [SECOND ANSWER]
+ The better answer is:”
+This is helpful for generating preference data for post-training alignment, test-time
+compute, and ranking models using comparative evaluation.
+36
+Examples of Built-In AI as a Judge Criteria
+AI Tools Built-in Criteria
+Azure AI Studio Groundedness, relevance, coherence, fluency, similarity
+MLflow.metrics Faithfulness, relevance
+LangChain Criteria
+Evaluation
+Conciseness, relevance, correctness, coherence, harmfulness, maliciousness,
+helpfulness, controversiality, misogyny, insensitivity, criminality
+Ragas Faithfulness, answer relevance
+It is critical to remember that criteria definitions are not standardised.
+37
+Prompts for AI-as-a-Judge
+1. The task the model is to perform: evaluate the relevance of an answer to a question.
+2. The criteria the model should follow to evaluate: ""Your primary focus should be..."" The
+more detailed instruction, the better.
+3. The scoring system:
+◦ Classification: good/bad, true/false, relevant/irrelevant/neutral.
+◦ Discrete numerical values: 1 to 5.
+◦ Continuous numerical values: between 0 and 1.
+4. Consider using examples.
+38
+Process Diagram of AI as a Judge
+(Huyen, 2025)
+39
+Limitations of AI Judges (1/2)
+• Inconsistency: for an evaluation method to be trustworthy, it needs to be consistent.
+◦ AI judges are AI and, therefore, probabilistic in nature.
+◦ Evaluation examples in the prompt can increase consistency.
+• Criteria ambiguity: AI as a judge metrics are not standardised/
+◦ Increases risk of misinterpretation or misuse.
+◦ An application evolves over time, but the way it's evaluated should be fixed.
+40
+Limitations of AI Judges (2/2)
+• Cost and latency: using powerful models to evaluate responses can be expensive and
+can add latency.
+◦ Use a weaker model for evaluation.
+◦ Apply spot-checks.
+• Biases:
+◦ Self-bias: model favours own responses.
+◦ Position bias: model favours first answer in a pairwise comparison or the first in a
+list of options.
+◦ Verbosity bias: model favours lengthier answers, regardless of quality.
+• AI judges should be combined with exact or human evaluation.
+41
+Comparative Evaluation
+• Compare models side-by-side instead of absolute scores.
+• Popularized by Anthropic & Chatbot Arena.
+• Algorithms: Elo, Bradley–T erry, TrueSkill.
+• Benefits: captures human preference, resists saturation.
+• Challenges: scalability, quality control, benchmark correlation.
+42
+Evaluating AI Systems
+43
+Evaluation-Driven Development
+• In AI Engineering evaluation-driven development means defining evaluation criteria
+before building.
+• An AI application should start with a list of evaluation criteria specific to the
+application.
+• Criteria fall within these categories:
+◦ Domain-specific capability: coding, math, legal knowledge.
+◦ Generation capability: fluency, coherence, factual consistency, safety.
+◦ Instruction-following: formats, constraints, style.
+◦ Cost & latency: time per token, price per output.
+44
+Domain-Specific Capabilities (1/3)
+• A model's domain-specific capabilities are constrained by its configuration (such as
+model architecture and size) and training data.
+• Evaluate domain-specific capabilities using public or private domain-specific
+benchmarks.
+• Commonly assessed using exact evaluation.
+• Coding tasks:
+◦ Evaluated using functional correctness.
+◦ Code readability: subjective evaluation using AI judges.
+• Efficiency measured by runtime or memory usage.
+45
+Domain-Specific Capabilities (2/3)
+• Non-coding domain tasks: evaluated with close-ended tasks, such as multiple choice
+questions (MCQ).
+◦ Reduces inconsistent statements.
+◦ Easier to verify and reproduce.
+◦ Most public benchmarks follow this approach: +75% of lm-evaluation-harness .
+• MCQ might have one or more correct answers.
+◦ Use a point system when multiple correct options exist.
+◦ Classification is a special case where the choices are the same for all questions.
+46
+Domain-Specific Capabilities (3/3)
+• MCQs disadvantages:
+◦ Sensitive to small changes in how the questions and options are presented.
+• Despite popularity, it is not yet clear if this is the best approach for FM evaluation.
+◦ MCQs test ability to select good answers, not to generate good answers.
+◦ MCQs are well-stuited for evaluating knowledge (does this model know  X?) and
+reasoning (can this model infer  Y from X?).
+◦ MCQs do not test summarisation, translation or essay writing.
+47
+Generation Capability
+• Metrics from Natural Language Generation:
+◦ Fluency: measures whether text is grammatically correct and natural-sounding.
+◦ Coherence: measures how well-structured the whole text is.
+◦ Can be evaluated with AI as a judge or using perplexity.
+• The most pressing issues are hallucinations and safety.
+48
+Factual Consistency (1/5)
+• Can be verified against explicitly provided facts (context) or against open knowledge:
+• Local factual consistency : the output is evaluated against context.
+◦ Output is factually consistent if it is supported by the context.
+◦ Important for tasks with limited scopes: summarisation, customer support
+chatbots, and business analysis.
+• Global factual consistency : output is evaluated against open knowledge.
+◦ Important for tasks with broad scopes such as general chatbots, fact-checking,
+market research, and so on.
+49
+Factual Consistency (2/5)
+Facts
+• Factual consistency is much easier to verify against explicit facts.
+• If no context given, then:
+i. Search for reliable resources.
+ii. Derive facts.
+iii. Validate the statement against facts.
+• The hardest part of factual consistency verfication is determining what the facts are.
+50
+Factual Consistency: Example Prompt
+Factual Consistency: Is the summary untruthful or contains misleading facts that are not supported by the source text?
+ Source Text:
+ {Document}
+ Summary:
+ {Summary}
+ Does the summary contain factual inconsistency?
+ Answer:
+51
+Factual Consistency (3/5)
+Self-verification
+• SelfCheckGPT: Given a response R, generate N new responses and measure how
+consistent R is with respect to N new responses.
+• If R disagree with majority of N or all responses disagree, then R is hallucination.
+• Approach works, but can be expensive.
+52
+Factual Consistency (4/5)
+Knowledge-augmented verification
+SAFE, Search-Augmented Factuality Evaluator (Google, DeepMind):
+1. Use an AI model to decompose into individual statements.
+2. Make each statement self-contained.
+3. For each statement, propose queries to send to Google.
+4. Use AI to determine whether the statement is consistent with research results.
+53
+Search-Augmented Factuality Evaluator
+(Wei et al, 2024)
+54
+Factual Consisntency (5/5)
+Entailments
+• Factual consistency can be framed as textual entailment , an NLP task.
+• Textua l  enta i l ment esta bl i sh es th e rel a ti onsh i p between two sta tements.
+Relationship Definition Factual Consistency
+Entailment The hypothesis can be inferred from the premise. Factually consistent.
+Contradiction The hypothesis contradicts the premise. Factually inconsistent.
+Neutral The premise neither entails nor contradicts the hypothesis. Cannot be determined.
+55
+Safety
+Unsafe content includes:
+• Inappropriate language, including profanity and explicit content.
+• Harmful recommendations and tutorials, including encouraging self-destructive
+behaviour.
+• Hate speech, including racist, sexist, homophobic speech, and other discriminatory
+behaviours.
+• Violence, including threats and graphic detail.
+• Stereotypes, such as using female names for nurses or male names for CEOs.
+• Biases against political positions or religion.
+56
+Unsafe Outputs and Biases
+• Unsafe outputs can cause reputational, financial, or societal harm.
+• Political bias is common on the internet; models differ in leanings.
+57
+Political Biases in LLMs
+(Feng et al, 2023)
+58
+Addressing Harmful
+Behaviour
+• AI judges implemented with
+general purpose models.
+• Models developed for to detect
+human harmful behaviour can
+also be applied.
+• Smaller toxicity detection models
+are efficient and cost-effective.
+• Example: Facebook hate speech
+detection  and Perspective API .
+59
+Safety Benchmarks
+• TruthfulQA (Lin et al, 2021 )  is a benchmark to measure whether a language model is
+truthful in generating answers to questions spanning 38 categories (health, law,
+politics, and so on). To perform well, models must avoid generating false answers
+learned from imitating human texts.
+• RealToxicityPrompts  tests how models respond to toxic inputs.
+• Bias in Open-ended Language Generation Dataset (BOLD)  is a dataset to evaluate
+fairness in open-ended language generation in English language.
+60
+Instruction-Following Capability
+61
+Importance
+• Models must follow instructions exactly, not approximately.
+• Failure to follow instructions breaks downstream applications.
+• Example: Sentiment classification requires NEUTRAL, POSITIVE, or NEGATIVE
+outputs.
+62
+IFEval Benchmark
+• IFEval (Zhou et al, 2023)  measures adherence to automatically verifiable instructions.
+• Tests i ncl ude constra i nts on keywords, l ength , forma t, a nd J S O N  output.
+• Scores are calculated as the fraction of correctly followed instructions.
+(Zhou et al, 2023)
+63
+IFEval Verifiable Instructions
+(Zhou et al, 2023)
+64
+INFOBench Benchmark
+• INFOBench (Qin et al, 2024)  extends instruction-following evaluation beyond format.
+• Tests i ncl ude:
+◦ Style, for example, ""use a respectful tone"".
+◦ Linguistic guidelines, like ""use Victorian English"".
+◦ Content restrictions, such as ""discuss only climate change"".
+• Verification may require human or AI judgment, not automation.
+65
+(Qin et al, 2024)
+66
+Custom Benchmarks
+• Developers should create their own instruction benchmarks.
+• Application-specific benchmarks ensure reliable evaluation.
+• Example: If YAML output is needed, include YAML-specific tests.
+67
+Roleplaying as Instruction-Following
+• Roleplaying is a common instruction type that is used for two purposes:
+i. Roleplaying a character for users to interact with.
+ii. Roleplaying as a prompt engineering technique to improve the quality of a
+model's output.
+• Use cases include non-player characters (NPCs) in games, AI companions, and
+writing assistants.
+• Benchmarks include RoleLLM (Wang et al, 2023)  and CharacterEval.
+68
+RoleLLM
+(Wang et al, 2023)
+69
+Roleplaying Evaluation
+• Models must stay consistent with role style
+and knowledge.
+• Example: A Jackie Chan persona should not
+speak Vietnamese if does not.
+• Evaluation often combines heuristics and AI-
+as-judge approaches.
+• Image: an example of RoleBench (Wang et
+al, 2023).
+70
+Trilemmas
+• A model that generates high-quality output, but is slow and costly will not be useful.
+• While designing AI systems, we must balance:
+◦ Output quality.
+◦ Latency.
+◦ Cost.
+• Also, consider that we generally will be forced to select at most two:
+◦ Speed.
+◦ Complexity.
+◦ Stability.
+71
+Pareto Optimisation
+• Optimising multiple objectives is an active field of research called Pareto Optimisation.
+• When facing multiple objectives be clear about which objectives can be compromised
+and which ones cannot.
+72
+Latency and Cost
+Latency
+• Metrics: time-to-first-token, time per token, total query time.
+• Influenced by model, prompt, and sampling variables.
+Cost
+• Cost drivers: input/output tokens (APIs), compute (self-hosted).
+• Trade-offs: performance vs cost vs latency.
+73
+Example of Model Selection Criteria (1/2)
+Criteria Metric Benchmark Hard requirement Ideal
+Cost Cost per output token X
+< $30.00 / 1M
+tokens
+< $15.00 / 1M
+tokens
+Scale
+TPM (tokens per
+minute)
+X > 1M TPM > 1M TPM
+Latency Time to first token (P90)
+Internal user prompt
+dataset
+< 200ms < 100ms
+Latency
+Time per total query
+(P90)
+Internal user prompt
+dataset
+< 1m < 30s
+(Huyen, 2025)
+74
+Example of Model Selection Criteria (2/2)
+Criteria Metric Benchmark Hard requirement Ideal
+Overall model quality Elo score Chatbot Arena’s ranking > 1200 >1250
+Code generation capability pass@1 HumanEval > 90% >95%
+Factual consistency Internal GPT metric Internal hallucination dataset > 0.8 > 0.9
+(Huyen, 2025)
+75
+Model Selection Workflow
+• Generally, we are not searching for the best model overall, we are looking for the best
+model for our application.
+• A workflow for model selection is:
+i. Filter by hard attributes: license, privacy, architecture.
+ii. Narrow with benchmarks and leaderboards.
+iii. Run your custom evaluation pipeline.
+iv. Monitor in production for failures and drift.
+76
+Model Selection Workflow
+(Huyen, 2025)
+77
+Open Source vs Model APIs
+• Build vs Buy: the decision will typically be use a commercial API or host an Open
+Source model.
+Model APIs
+• Pros: best models, scaling, guardrails, features (function calling).
+• Cons: cost, vendor lock-in, limited control/transparency.
+Self-Hosting
+• Pros: control, transparency, customization, on-device.
+• Cons: big/costly engineering effort, usually weaker models.
+78
+Open Source vs Proprietary Models
+• Proprietary models often provide cutting-edge performance via APIs.
+• Open source models allow customization and on-premises deployment.
+• API services now exist that wrap open source models with added infrastructure.
+• Inference and fine-tuning services for open source models are available from cloud
+providers like Azure, AWS, or GCP.
+• Tea ms must wei gh  performa nce a ga i nst control , cost, a nd pri va cy needs.
+79
+Open vs Closed
+Models:
+Performance
+Performance comparison of
+closed-source and open-
+weight large language
+models on the MMLU (5-
+shot) benchmark.
+(Riedemann et al, 2024)
+80
+Open vs Closed Models: Privacy
+• Externally hosted model APIs are out of the question for organizations with strict
+privacy restrictions.
+• There is a risk that a model API provider can use your data to train its models, even
+though most providers claim that they do not do so.
+81
+Open vs Closed Models: Data Lineage and Copyright
+• For most models, it is unclear the data that was used for training.
+• IP laws around AI are actively evolving.
+• Some companies will choose open models for transparency, other companies will
+select closed models to avoid legal risk exposure.
+82
+Open vs Closed Models: API Cost vs Engineering Cost
+• Model APIs are expensive and engineering can be more so.
+• With enough scale, organisations will consider hosting their own models.
+• Model APIs charge per usage and create a dependency on their Service Level
+Agreement (SLA).
+• Hosted models afford control and flexibility, but effort must be spent to maintain the
+interface, guardrails, scale, and optimise the model.
+• In all cases, we prefer models that:
+i. Are easy to use and manipulate.
+ii. Implement a standard interface, which makes it easier to swap models.
+83
+Open vs Closed Models
+84
+Benchmarks and Leaderboards
+• Thousands of benchmarks  exist, covering math, science, law, reasoning, and more.
+• Benchmarks can become saturated quickly, requiring new ones.
+• Trustworthiness of benchmarks varies; evaluation design is crucial.
+• Leaderboards like LMSYS Chatbot Arena  provide crowd-sourced comparisons .
+• Different leaderboards use different benchmarks, therefore their rankings can be
+different.
+85
+Custom Leaderboards with Public Benchmarks
+• A custom leaderboard can be created using benchmarks that are relevant to your
+application.
+• Once selected, you need to aggregate them considering:
+◦ The weight or relative importance of each benchmark.
+◦ The aggregation method: average, mean win rate (the fraction of times a model
+obtains a better score than onother model, averaged across scenarios), etc.
+86
+Data Contamination
+• Models often trained on public benchmarks which leads to inflated scores.
+• Detection can be done by calculating n-gram overlap or observing low perplexity.
+• Handling: disclose contamination, evaluate on clean subsets.
+• Lesson: don’t fully trust public benchmark scores.
+87
+Designing an Evaluation Pipeline
+88
+Why Pipelines Matter
+• Evaluation should not be one-off project but a continuous process.
+• Pipelines ensure reliable tracking of progress over time by combining automatic
+evaluation with human or AI-judge oversight.
+• Pipelines help identify risks, failures, and opportunities for improvement.
+89
+Designing an Evaluation Pipeline
+1. Evaluate all components: per task, per turn, per step.
+2. Create clear guidelines and rubrics tied to business metrics.
+3. Define evaluation methods and datasets: exact, subjective, human-in-the-loop.
+4. Validate the pipeline: reliability, bootstrap resampling, significance tests.
+90
+Pipeline Components
+• Define evaluation criteria before building the system.
+• Use domain benchmarks for capability checks.
+• Apply similarity or correctness metrics for generation tasks.
+• Integrate AI as a judge for scalable subjective evaluation.
+• Include safety and bias checks to ensure responsible deployment.
+91
+Continuous Evaluation
+• Evaluation should be performed during all stages of development.
+• Early tests can be simple (eyeballing, small benchmarks) but most tests must scale
+later.
+• Over time, evaluation should become systematic and automated.
+• This enables faster iteration while maintaining reliability.
+• If you care about something, test it automatically.
+92
+References
+93
+References
+• Chang, Yupeng et al. ""A survey on evaluation of large language models."" ACM
+transactions on intelligent systems and technology 15, no. 3 (2024): 1-45.
+( arXiv:2307.03109 )
+• Chen, Mark et al. (2021). ""Evaluating large language models trained on code.""
+arXiv:2107.03374 .
+• Feng, Shangbin et al. ""From pretraining data to language models to downstream tasks:
+Tracking the trails of political biases leading to unfair NLP models."" arXiv:2305.08283
+(2023).
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+• Lin, Stephanie, Jacob Hilton, and Owain Evans. ""Truthfulqa: Measuring how models
+mimic human falsehoods."" arXiv:2109.07958  (2021).
+94
+References
+• Qin, Yiwei, et al. ""Infobench: Evaluating instruction following ability in large language
+models."" arXiv:2401.03601  (2024).
+• Riedemann, Lars, Maxime Labonne, & Stephen Gilbert. (2024). The path forward for
+large language models in medicine is open. npj Digital Medicine. 7. 10.1038/
+s41746-024-01344-w.
+• Slattery, P. et al (2024). The AI Risk Repository: A Comprehensive Meta-Review,
+Database, and T axonomy of Risks from Artificial Intelligence. arxiv:2408.12622
+95
+References
+• Wang, Zekun Moore, et al. ""Rolellm: Benchmarking, eliciting, and enhancing role-
+playing abilities of large language models."" arXiv:2310.00746  (2023).
+• Wei, Jerry et al. ""Long-form factuality in large language models."" Advances in Neural
+Information Processing Systems 37 (2024): 80756-80827. arXiv:2403.18802
+• Zhou, Jeffrey et al. ""Instruction-following evaluation for large language models.""
+arXiv:2311.07911  (2023).
+96"
+04_prompt_engineering.pdf,"Deploying AI
+Prompt Engineering
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• System vs user prompt, context length and context efficiency
+• Prompt engineering best practices
+• Defensive prompt engineering
+4
+Reference Process Flow
+(Bommasani et al, 2025)
+5
+What is Prompt Engineering?
+• Prompt engineering is the process of crafting instructions that guide a model to
+generate the desired outcome.
+• It is the easiest and most common model adaptation technique.
+• Unlike finetuning, it does not change the model’s weights but instead steers its
+behavior.
+• Strong foundation models can often be adapted using prompt engineering alone.
+• It is easy to write prompts, but not easy to write effective prompts.
+6
+Misconceptions and Criticisms
+• Some dismiss prompt engineering as
+unscientific fiddling with words.
+• In reality, it involves systematic
+experimentation and evaluation.
+• It should be treated with the same rigor as
+any machine learning experiment.
+• Effective prompt engineering requires
+communication skills and technical
+knowledge.
+7
+The Role of Prompt Engineering
+• Prompt engineering is a valuable skill but not sufficient alone for production systems.
+• Developers also need skills in statistics, engineering, and dataset curation.
+• Well-designed prompts can power real applications but require careful defense
+against attacks.
+8
+Introduction to Prompting
+9
+Anatomy of a Prompt
+• A prompt is an instruction given to a model to perform a task.
+• Prompts may include task descriptions, examples, and the specific task to perform.
+Given a text, extract all entities. Output only the list of extracted entities, separated by commas, and nothing else.
+Text: ""Brave New World is a dystopian novel written by Aldous Huxley, first published in 1932.""
+Entities: Brave New World, Aldous Huxley
+Text: ${TEXT_TO_EXTRACT_ENTITIES_FROM}
+Entities:
+• For prompting to work, the model must be able to follow instructions.
+• How much prompt engineering is needed depnds on how robust the model is to
+prompt perturbations.
+10
+Measuring Robustness
+• Robustness can be tested by slightly altering prompts and observing results.
+• Stronger models are more robust and understand equivalent expressions such as “5”
+and “five.”
+• Working with stronger models often reduces prompt fiddling and errors.
+11
+In-Context Learning
+12
+Zero-Shot and Few-Shot Learning
+• Tea ch i ng model s vi a  prompts i s known a s i n- context l ea rni ng.
+• Zero-shot learning uses no examples in the prompt.
+• Few-shot learning uses a small number of examples to guide the model.
+• The effectiveness depends on the model and the task.
+• GPT-3 demonstrated that it was able to learn examples contained in the prompt, even
+if the desirable behaviour is different from the behaviour that the model was trained on.
+13
+Benefits of In-Context Learning
+• Models can adapt to new information beyond their training cut-off date.
+• In-context learning acts like continual learning by incorporating new data at inference
+time.
+• This prevents models from becoming outdated.
+14
+Prompt Structure
+15
+System Prompts and User Prompts (1/2)
+• Many APIs separate prompts into system prompts and user prompts.
+◦ The system prompt defines rules, roles, and tone.
+◦ The user prompt contains the specific task or query.
+• The final input is a combination of both.
+16
+System Prompts and User Prompts (2/2)
+System prompt
+You are an experienced real estate agent. Your job is to read each disclosure carefully, 
+fairly assess the condition of the property based on this disclosure, and help your 
+buyer understand the risks and opportunities of each property. For each question, answer 
+succinctly and professionally.
+User prompt
+Context: [disclosure.pdf]
+Question: Summarize the noise complaints, if any, about this property.
+Answer:
+17
+Importance of T emplates
+• Models such as Llama require specific chat templates.
+• Deviations from templates can cause degraded performance.
+• Using incorrect templates is a common source of silent failures.
+• For example, Llama 3 prompts need to follow a specific prompt template . For example:
+• When implementing or fine-tuning a model with a given template, it is important to
+maintain the template's integrity.
+18
+Example of a Chat T emplate
+<s> [INST] <<SYS>>
+You are a friendly chatbot who always responds in the style of a pirate
+<</SYS>>
+How many helicopters can a human eat in one sitting? [/INST] 
+Ahoy there, mate! A human can't eat a helicopter in one sitting, no matter 
+how much they might want to. They're made of metal and have blades that spin 
+at high speeds, not exactly something you'd want to put in your belly!</s>  
+<s> [INST] Are you sure?</s>  [/INST] 
+Aye, I'm sure! Helicopters are designed for flight and are not meant to be 
+consumed by humans. They're made of metal and have blades that spin at high 
+speeds, which would be very dangerous to ingest. So, no human can eat a 
+helicopter in one sitting, no matter how much they might want to.</s>
+19
+Context Length
+20
+Expanding Context
+Windows
+• Context length determines how
+much information a model can
+process in one prompt.
+• Context windows have grown
+from 1K tokens in GPT-2 to 2M
+tokens in Gemini-1.5.
+• Larger context allows models to
+handle long documents and
+complex tasks.
+• Image: (Yun, 2024)
+21
+Context Efficiency
+• Models understand information at the beginning and end of prompts better than in the
+middle.
+• Needle-in-a-haystack tests show models often miss details buried deep in the
+prompt.
+• Developers should place important information strategically.
+22
+Needle in the Haystack
+Needle in the Haystack (NIAH): insert a random piece of information (needle) in different
+locations of the prompt (haystack) and ask a model to find it.
+(Liu et al, 2023)
+23
+Best Practices in Prompt Engineering
+24
+Writing Clear Instructions
+• Clear and explicit instructions reduce ambiguity.
+◦ Explain what you want the model to do: ""score between 1 and 5...""
+◦ Adjust prompts to reduce unwanted behaviour: if the model outputs 4.5, update
+the prompt to output integers.
+• Specify scoring systems, rubrics, required formats, or acceptable ranges.
+• Include examples to clarify expected responses.
+25
+Unclear Pormpts
+Role: User
+Unclear Prompt
+Please remove all personally identifiable information from these customer feedback messages: {{FEEDBACK_DATA}}
+Role: Assistant (Claude's response)
+Here are the anonymized customer feedback messages:
+1. I’ve been using your software for years, and it’s been great. But lately, AcmeCloud has been crashing a lot. Fix it!
+2. XXX, your customer support rep, was incredibly helpful. He guided me through the whole process. 
+My email is XXX if you want to send a survey.
+3. I’m John Smith, and I’m not happy. I’ve been on hold for 2 hours trying to reach someone at XXX. This is unacceptable!
+Source: Claude Docs .
+26
+Clear Pormpt (1/2)
+Role: User
+Clear Prompt
+Your task is to anonymize customer feedback for our quarterly review.
+Instructions:
+1. Replace all customer names with “CUSTOMER_[ID]” (e.g., “Jane Doe” → “CUSTOMER_001”).
+2. Replace email addresses with “EMAIL_[ID]@example.com”.
+3. Redact phone numbers as “PHONE_[ID]“.
+4. If a message mentions a specific product (e.g., “AcmeCloud”), leave it intact.
+5. If no PII is found, copy the message verbatim.
+6. Output only the processed messages, separated by ”---”.
+Data to process: {{FEEDBACK_DATA}}
+27
+Clear and Unclear Pormpts (1/2)
+Role: Assistant (Claude's response)
+CUSTOMER_001: I’ve been using your software for years, and it’s been great. But lately, AcmeCloud has been crashing a lot. Fix it!
+---
+CUSTOMER_002: CUSTOMER_SERVICE_001, your customer support rep, was incredibly helpful. He guided me through the whole process. 
+My email is EMAIL_002@example.com if you want to send a survey.
+---
+CUSTOMER_003: I’m CUSTOMER_003, and I’m not happy. I’ve been on hold for 2 hours trying to reach someone at PHONE_001. This is unacceptable!
+28
+Using Personas
+• Assigning a persona helps models
+respond appropriately.
+• For example, scoring essays as a
+first-grade teacher yields different
+results than as a professional
+editor.
+29
+Providing Examples
+• Examples guide the model toward the desired output style ( Anthropic ).
+◦ Accuracy : Examples reduce misrepresentation of instructions.
+◦ Consistency : Examples enforce uniform structure and style.
+◦ Performance : Well-chosen examples boost the model's ability to handle complex
+tasks.
+30
+Effective Examples
+Effective examples are:
+• Relevant : The examples mirror the actual use case.
+• Diverse : Examples cover edge cases, potential challenges, and vary enough so that
+the model does not learn unintended patterns.
+• Clear : The examples are indicated with markers or tags such as <example> .
+31
+No Examples (1/2)
+Role: User
+Prompt without examples
+Analyze this customer feedback and categorize the issues. 
+Use these categories: UI/UX, Performance, Feature Request, Integration, Pricing, and Other. 
+Also rate the sentiment (Positive/Neutral/Negative) and priority (High/Medium/Low).
+Here is the feedback: {{FEEDBACK}}
+Source: Claude Docs .
+32
+No Examples (2/2)
+Role: Assistant (Claude's response)
+Here’s the analysis of the customer feedback:
+Issue: UI/UX
+Sentiment: Negative
+Priority: High
+The customer is frustrated with the new dashboard design, which they find cluttered and slow to load. 
+They specifically call out the missing “export” button, which is likely a critical feature. This issue needs to be addressed as a high priority.
+Issue: Integration
+Sentiment: Positive
+Priority: Medium
+The customer is pleased with the existing Salesforce integration but would like to see support for Hubspot 
+as well. This is a feature request that could be considered for a future product update.
+Issue: Pricing
+Sentiment: Negative
+Priority: High
+The customer finds the pricing to be unreasonable, especially for the basic features. They are threatening 
+to switch to a competitor, so this is a high-priority issue that needs to be reviewed.
+Issue: Performance
+Sentiment Negative
+Priority: High
+The customer is experiencing critical issues with the mobile app, where large file uploads consistently 
+result in crashes. This is a significant problem that impacts the customer’s ability to use the product 
+effectively and should be addressed as a high priority.
+33
+With Examples (1/2)
+Role: User
+Prompt with examples
+Our CS team is overwhelmed with unstructured feedback. Your task is to analyze feedback and categorize 
+issues for our product and engineering teams. Use these categories: UI/UX, Performance, Feature Request, 
+Integration, Pricing, and Other. Also rate the sentiment (Positive/Neutral/Negative) and priority 
+(High/Medium/Low). Here is an example:
+<example>
+Input: The new dashboard is a mess! It takes forever to load, and I can’t find the export button. Fix this ASAP!
+Category: UI/UX, Performance
+Sentiment: Negative
+Priority: High</example>
+Now, analyze this feedback: {{FEEDBACK}}
+34
+With Examples (2/2)
+Role: Assistant (Claude's response)
+Here’s the analysis of the customer feedback:
+1. The new dashboard is a mess! It takes forever to load, and I can’t find the export button. Fix this ASAP!
+Category: UI/UX, Performance
+Sentiment: Negative
+Priority: High
+2. Love the Salesforce integration! But it’d be great if you could add Hubspot too.
+Category: Integration, Feature Request
+Sentiment: Positive
+Priority: Medium
+3. Your pricing is ridiculous! $99/mo for basic features? I’m switching to Competitor X.
+Category: Pricing
+Sentiment: Negative
+Priority: High
+4. The mobile app keeps crashing when I try to upload large files (>50MB). This is critical for our field agents.
+Category: Performance
+Sentiment: Negative
+Priority: High
+35
+Nudging a Model with Examples
+(Huyen, 2025)
+36
+Example Formats (1/2)
+Fewer tokens should be used to conserve context space and reduce costs.
+Prompt # tokens (GPT-4)
+Label the following item as edible or inedible.
+Input: chickpea
+Output: edible
+Input: box
+Output: inedible
+Input: pizza
+Output:
+38
+37
+Example Formats (2/2)
+Prompt # tokens (GPT-4)
+Label the following item as edible or inedible.
+chickpea --> edible
+box --> inedible
+pizza -->
+27
+Some example formats are more expensive than others (Huyen, 2025).
+38
+Specifying Output Format
+• Structured tasks require explicit instructions about output format.
+• Models should be told to produce JSON, integers, or labeled text.
+• Using markers prevents confusion between inputs and outputs.
+39
+Markers
+Prompt Model's output
+Label the following item as edible or inedible.
+pineapple pizza --> edible
+cardboard --> inedible
+chicken
+tacos --> edible
+Pineapple pizza --> edible
+cardboard --> inedible
+chicken -->
+edible
+Without explicit markers to mark the end of the input, a model might continue appending to
+it instead of generating structured outputs (Huyen, 2025).
+40
+Provide Sufficient Context (1/2)
+• Including reference texts improves accuracy and reduces hallucinations.
+• Context can be supplied directly or retrieved through tools like RAG pipelines.
+• In some scenarios, we want to restrict the response to only consider the context
+that we provided .
+◦ Clear instructions: ""Answer using only the provided context.""
+◦ Examples of questions that it should not be able to answer.
+◦ Instruct the model to specifically quote the corpus that we provided.
+41
+Provide Sufficient Context (2/2)
+Add contextual information such as:
+• Describe how the task results will be used.
+• Establish the intended audience.
+• What workflow the task is part of and where does this task belong within the workflow.
+• What is the end goal of the task and what does a successful completion look like.
+42
+Breaking Down T asks
+43
+Decomposing T asks
+• Complex tasks should be broken into smaller subtasks.
+◦ Most of the time, tasks will be broken into sequential steps.
+◦ Provide subtasks as numbered lists or bullet points.
+◦ Each subtask could have its own prompt.
+• Subtask chaining improves performance and reliability.
+• For example, a customer chatbot. Respond to a customer request in two steps:
+i. Intent classification : identify the intent of the request.
+ii. Response generation : based on the intent, respond appropriately.
+44
+Intent Classification
+Prompt 1: Intent classification
+SYSTEM
+You will be provided with customer service queries. Classify each query into a primary category and a secondary category. 
+Provide your output in json format with the keys: primary and secondary.
+Primary categories: Billing, Technical Support, Account Management, or General Inquiry.
+Billing secondary categories:
+- Unsubscribe or upgrade
+- …
+Technical Support secondary categories:
+- Troubleshooting
+- …
+Account Management secondary categories:
+- …
+General Inquiry secondary categories:
+- …
+USER
+I need to get my internet working again
+45
+Response
+Prompt 2: Response to troubleshooting request
+SYSTEM
+You will be provided with customer service inquiries that require trouble shooting in a technical support context. 
+Help the user by:
+- Ask them to check that all cables to/from the router are connected. Note that it is common for cables to come loose over time.
+- If all cables are connected and the issue persists, ask them which router model they are using.
+- If the customer's issue persists after restarting the device and waiting 5 minutes, connect them to IT support by outputting 
+{""IT support requested""}.
+- If the user starts asking questions that are unrelated to this topic  then confirm if they would like to end the current chat 
+about trouble  shooting and classify their request according to the following scheme:
+<insert primary/secondary classification scheme from above here>
+ 
+USER
+I need to get my internet working again.
+46
+Intent Classification: A Few Notes
+• Why not decompose the prompt into one prompt for primary intent category and
+another for the secondary category?
+◦ The granularity each subtask should be depnds on each use case and the
+performance, cost, and latency restrictions.
+• Models are getting better at understanding complex instructions, but they are still
+better at performing simple ones.
+47
+Benefits of Decomposition
+• Monitoring intermediate results becomes easier.
+• Debugging faulty steps is more manageable.
+• Some steps can be parallelized to save time.
+• Effort: it is easier to write simple prompts than complex ones.
+48
+Giving Models Time to Think
+49
+Chain-of-Thought (Co T)
+Prompting
+• Chain-of-thought prompting asks
+models to reason step by step.
+• It significantly improves reasoning
+and reduces hallucinations (Wei et
+al, 2022).
+• Variants include “think step by
+step” or “explain your decision” .
+50
+Co T Illustration
+(Wei et al, 2022)
+51
+How to Prompt for CoT (1/3)
+Basic prompt
+• Include Think step by step  in your prompts.
+• Does not include guidance on how  to think step-by-step. ( Claude Docs )
+Role: User
+Draft personalized emails to donors asking for contributions to this year’s Care for Kids program.
+Program information:
+<program>{{PROGRAM_DETAILS}}
+</program>
+Donor information:
+<donor>{{DONOR_DETAILS}}
+</donor>
+Think step-by-step before you write the email.
+52
+How to Prompt for CoT (2/3)
+Guided prompt
+• Outline specific steps for the model to follow.
+• Does not have a structure to simplify separating the answer from the thinking. ( Claude
+Docs )
+Role: User
+Draft personalized emails to donors asking for contributions to this year’s Care for Kids program.
+Program information:
+<program>{{PROGRAM_DETAILS}}
+</program>
+Donor information:
+<donor>{{DONOR_DETAILS}}
+</donor>
+Think before you write the email. First, think through what messaging might appeal to this donor given their donation history and which campaigns 
+they’ve supported in the past. Then, think through what aspects of the Care for Kids program would appeal to them, given their history. Finally, write 
+the personalized donor email using your analysis.
+53
+How to Prompt for CoT (3/3)
+Structured prompt
+• Use XML tags like <thinking>  and <answer>  to separate reasoning from the final
+answer ( Claude Docs ).
+Role: User
+Draft personalized emails to donors asking for contributions to this year’s Care for Kids program.
+Program information:
+<program>{{PROGRAM_DETAILS}}
+</program>
+Donor information:
+<donor>{{DONOR_DETAILS}}
+</donor>
+Think before you write the email in <thinking> tags. First, think through what messaging might appeal to this donor given 
+their donation history and which campaigns they’ve supported in the past. Then, think through what aspects of the Care for Kids 
+program would appeal to them, given their history. Finally, write the personalized donor email in <email> tags, using your 
+analysis.
+54
+Why Use CoT Prompting?
+• Accuracy: Stepping through problems reduces errors, especially in math, logic,
+analysis, or generally complex tasks.
+• Coherence: Structured thinking leads to more cohesive, well-organized responses.
+• Debugging: Observing the model's process helps you pinpoint where prompts are
+unclear. ( Claude Docs )
+55
+Why Not T o Use CoT Prompting?
+• Cost and latency because of increased output length.
+• Not all tasks require it: performance, latency, and costs should always be
+balanced( Claude Docs ).
+56
+Co T Prompt Variations
+(Huyen, 2025)
+57
+Self-Critique Prompting (1/2)
+• Models can be instructed to review and critique their own outputs.
+• This helps identify errors and improve reliability.
+• However, it increases latency and costs.
+58
+Self-Critique Promptin (2/2)
+Some techniques include:
+• Self-Calibration
+• Self-Refine
+• Reversing CoT (RCoT)
+• Self-Verification
+• Chain-of-Verification (CoVe)
+• Cumulative Reasoning (CR)
+59
+Self-Calibration
+Self-Calibration is a two-step process:
+1. Get an initial answer.
+2. Ask the model whether the proposed answer is true or false.
+Question: Who was the first president of the United States?
+Here are some brainstormed ideas:
+Thomas Jefferson
+John Adams
+George Washington
+Possible Answer: George Washington
+Is the possible answer:
+(A) True
+(B) False
+The possible answer is:
+60
+Self-Calibration Works
+(Kadavath et al, 2022)
+61
+Self-Calibration Limitations
+• Authors focus on pre-trained language models, but exclude fine-tuned models.
+• Tech ni que ma y not work wel l  for fi ne- tuned model s.
+62
+Self-Refine (1/2)
+Involves three steps:
+1. Initial output: Prompt the model to
+obtain the initial output.
+2. Feedback: Use the prompt and
+initial output to ask the model fore
+feedback.
+3. Refinement: Pass the feedback to
+the model to get the final output.
+63
+Self-Refine (2/2)
+(Madaan et al, 2023)
+64
+Self-Refine Example
+(Based on this example by Bhaat .)
+65
+Self-Refine Limitations
+• Base model needs to be capable of following instructions.
+• Can be used with malicious intent to steer a model into generating toxic/harmful text.
+66
+Iterating and T ools
+67
+Iterating on Prompts
+• Manual prompt construction is time-consuming and error-prone.
+• The optimal prompt is ellusive and can change over time.
+• Prompt engineering requires trial and error.
+• Each model has quirks that must be discovered experimentally.
+• Prompts should be versioned, tracked, and systematically tested.
+68
+Prompt Engineering Tools (1/2)
+Prompt optimization
+• DSPy .
+• PromptBreeder .
+Guiding models to structured outputs
+• Guidance .
+• Outlines .
+69
+Prompt Engineering Tools (2/2)
+• AI models themselves can generate and refine prompts.
+• Automated tools must be monitored to avoid runaway costs.
+70
+Organizing Prompts
+71
+Versioning Prompts
+• Prompts should be separated from code for readability and reuse.
+• They can be organized into catalogs with metadata.
+• Prompt catalogs allow versioning and tracking dependencies.
+72
+Separate Prompts from Code
+Separating prompts from code is a good
+practice. Its advantages include:
+• Reusability : Many applications can
+reuse the same prompt or code.
+• Te sti ng : Code and prompts can be
+tested separately.
+• Readability : Both, prompts and code,
+are easier to read separately.
+• Collaboration : SME can collaborate
+without the distraction of code.
+73
+Defensive Prompt Engineering
+74
+Prompt Attacks
+• Models are vulnerable to prompt extraction, jailbreaking, and information extraction.
+• Attackers can exploit weaknesses to cause data leaks, misinformation, or brand
+damage.
+75
+Reverse Prompt Engineering
+• Attackers attempt to reconstruct system prompts by tricking models.
+• Extracted prompts may be hallucinated, making verification difficult.
+• Proprietary prompts can be liabilities if not secured.
+76
+Jailbreaking and Prompt Injection
+• Jailbreaking subverts safety mechanisms.
+• Prompt injection adds malicious instructions to legitimate queries.
+• Both can cause unauthorized actions, misinformation, or harmful outputs.
+77
+Information Extraction
+• Attackers can extract private data or copyrighted content from models.
+• Training data leakage is possible through crafted prompts.
+• Larger models are more vulnerable due to memorization.
+78
+Defensive Measures
+• Prompts can explicitly forbid certain outputs.
+• System-level defenses include sandboxing, human approvals, and topic filtering.
+• Guardrails on inputs and outputs help detect and block unsafe content.
+79
+Chapter Summary
+80
+Key Takeaways
+• Prompt engineering is powerful but requires rigor and systematic evaluation.
+• Effective prompts need clarity, examples, context, and careful structuring.
+• Ta sk decomposi ti on, ch a i n- of- th ough t, a nd i tera ti on i mprove rel i a bi l i ty.
+• Tool s a nd ca ta l ogs h el p sca l e prompt engi neeri ng but must be ma na ged ca reful l y.
+• Defensive strategies are essential to protect against prompt attacks and misuse.
+81
+References
+82
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+• Kadavath, S. et al. Language Models (Mostly) Know What They Know.
+arXiv:2207.05221 , 2022.
+• Liu, Nelson F. et al. ""Lost in the middle: How language models use long contexts.""
+arXiv:2307.03172 , 2023.
+• Madaan, Aman, et al. ""Self-refine: Iterative refinement with self-feedback."" Advances
+in Neural Information Processing Systems 36 (2023): 46534-46594.
+arXiv:2303.17651 .
+• Wei, Jason et al. ""Chain-of-thought prompting elicits reasoning in large language
+models."" Advances in neural information processing systems 35 (2022):
+24824-24837. arXiv:2201.11903
+• Yun, Yennie. Evaluating long context large language models. artfish.ai , 2025.
+83"
+05_rag.pdf,"Deploying AI
+Retrieval Augmented Generation (RAG)
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• RAG Architecture
+• Retrieval Algorithms and optimization
+4
+Introduction
+• To sol ve a  ta sk, a  model  needs both  i nstructi ons a nd th e necessa ry i nforma ti on.
+• Models are more likely to hallucinate when missing context.
+• Context differs per query, while instructions are generally fixed.
+• Two dominant context construction patterns are retrieval-augmented generation
+(RAG) and agents.
+• RAG retrieves information from external data sources.
+• Agents use external tools, enabling broader capabilities including world interaction.
+5
+Why RAG and Agents Matter
+• RAG enhances a model’s generation by retrieving relevant information.
+• Agents expand capabilities by leveraging tools like search APIs or code execution.
+• Both patterns address models’ weaknesses and extend their utility.
+• These approaches have produced impressive demos and practical applications.
+• They are widely seen as the future of AI-powered systems.
+6
+Retrieval-Augmented Generation (RAG)
+7
+RAG Overview
+• RAG retrieves relevant information from external memory sources to supplement
+model outputs.
+• External sources can include internal databases, prior conversations, or the web.
+• This technique was first formalized in research around open-domain question
+answering.
+• RAG helps models generate more accurate and less hallucinated answers.
+8
+Why RAG Exists
+• Foundation models have limited context length.
+• Users produce more data than can fit in context windows.
+• Long contexts are costly and may reduce model efficiency.
+• RAG selectively retrieves relevant chunks, keeping inputs concise and focused.
+• Retrieval acts as context construction, similar to feature engineering in ML.
+9
+RAG Architecture
+• A RAG system consists of two components: a retriever and a generator.
+• The retriever indexes and retrieves relevant chunks from external memory.
+• The generator produces responses conditioned on retrieved data.
+• These two parts may be trained separately or jointly.
+• System performance depends heavily on retriever quality.
+10
+Retrieval Algorithms
+• Retrieval has a century-long history in information systems.
+• Algorithms differ in how they score document relevance.
+• Two broad categories are term-based retrieval and embedding-based retrieval.
+• Retrieval solutions also include hybrid approaches that combine both.
+11
+Term- Ba sed Retri eva l
+• Term- ba sed meth ods focus on l exi ca l  ma tch es, such  a s keyword overl a ps.
+• Popular algorithms include TF-IDF and BM25.
+• Term frequency mea sures h ow often a  term a ppea rs i n a  document.
+• Inverse document frequency downweights common terms.
+• BM25 improves TF-IDF by adjusting for document length.
+12
+Embedding-Based Retrieval
+• Embedding-based methods retrieve by semantic similarity rather than exact terms.
+• Queries and documents are converted into embeddings.
+• The retriever finds the nearest embeddings in vector space.
+• Requires a vector database to efficiently store and search embeddings.
+• Common libraries include FAISS, ScaNN, Annoy, and Hnswlib.
+13
+Sparse vs. Dense Retrieval
+• Sparse retrieval methods represent data with mostly zero values.
+• Dense retrieval uses embeddings with nonzero values across dimensions.
+• SPLADE is an example of sparse embedding retrieval.
+• Dense methods capture semantics better but can be costlier to compute.
+14
+Comparing Retrieval Approaches
+• Term- ba sed retri eva l  i s fa st, si mpl e, a nd i nexpensi ve.
+• Embedding-based retrieval enables natural queries but requires embeddings and
+vector search.
+• Hybrid approaches combine both, often using term-based retrieval first and semantic
+reranking later.
+• The choice depends on trade-offs between speed, cost, and accuracy.
+15
+Evaluating Retrieval
+• Key metrics include context precision and recall.
+• Precision measures what percentage of retrieved results are relevant.
+• Recall measures what percentage of relevant results are retrieved.
+• Additional ranking metrics include NDCG, MAP, and MRR.
+• Ultimately, retrieval is valuable only if it improves generative outputs.
+16
+Retrieval Optimization
+• Several tactics can optimize retrieval performance.
+• Chunking : splitting documents into manageable parts.
+• Reranking : refining the ranking of retrieved documents.
+• Query rewriting : clarifying ambiguous queries.
+• Contextual retrieval : enriching documents with metadata or context.
+17
+Chunking Strategies
+• Documents may be split by characters, words, sentences, or paragraphs.
+• Recursive chunking reduces arbitrary breaks.
+• Overlaps prevent loss of key boundary information.
+• Chunk size affects both coverage and efficiency.
+• There is no universal best practice; experimentation is necessary.
+18
+Query Rewriting
+• Queries are rewritten to make intent explicit and unambiguous.
+• Ambiguous follow-ups, such as “How about Emily?” , require contextual rewriting.
+• AI models can automate query rewriting with carefully designed prompts.
+• Rewriting may involve identity resolution or knowledge lookup.
+19
+Contextual Retrieval
+• Chunks can be augmented with metadata like tags or entities.
+• Additional questions may be linked to articles to aid retrieval.
+• Document titles and summaries can help situate chunks.
+• Generated context improves retrievability without altering core content.
+20
+RAG Beyond Text
+• RAG can operate on multimodal and structured data.
+• Multimodal RAG  augments queries with images, audio, or video.
+• Ta bu l a r RAG  retrieves and executes queries on structured datasets.
+• SQL executors are often used to query relational data.
+• These variations extend RAG beyond text-only use cases.
+21
+22
+Summary
+23
+Key Takeaways
+• RAG retrieves external knowledge to improve model responses.
+• Retrieval methods include term-based, embedding-based, and hybrid approaches.
+• Optimizations such as chunking and reranking boost retrieval quality.
+• RAG extends beyond text to multimodal and tabular contexts.
+• Agents integrate reasoning, planning, and tool use to act in environments.
+• Tool s extend a gent ca pa bi l i ti es i n percepti on, rea soni ng, a nd a cti on.
+• Evaluating agents requires balancing accuracy, cost, latency, and safety.
+24
+References
+25
+References
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+26"
+06_agents.pdf,"Deploying AI
+Agents
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• Planning
+• Interacting with APIs and MCP
+• Agent failure modes and evaluation
+4
+Agents
+5
+Introduction to Agents
+• An agent perceives its environment and acts upon it.
+• Agents are defined by their environment and available actions.
+• They can leverage tools to expand their capabilities.
+• Chatbots with retrieval or browsing abilities are examples of agents.
+• Agents combine reasoning, planning, and tool use.
+6
+Why Agents Matter
+• Agents can automate workflows that require multiple steps.
+• They integrate perception, planning, and action into cohesive loops.
+• Examples include research assistants, trip planners, and negotiation bots.
+• Agents represent a path toward autonomous, goal-driven AI systems.
+7
+Agent Components
+• Environment : defines the context in which the agent operates.
+• Actions : possible operations available to the agent.
+• Tools : extend the agent’s ability to perceive or act.
+• Planner : determines how to sequence actions to reach goals.
+• Feedback loop : updates decisions based on environment responses.
+8
+Tools for Agents
+• Tool s enh a nce a gents by provi di ng knowl edge a nd ca pa bi l i ti es.
+• Knowledge augmentation  tools retrieve or access data sources.
+• Capability extension  tools solve inherent model weaknesses, such as calculators.
+• Write actions  tools allow agents to alter environments, such as sending emails.
+• Tool  sel ecti on sh a pes th e effecti veness a nd rel i a bi l i ty of a gents.
+9
+Knowledge Augmentation Tools
+• Examples include text retrievers, image retrievers, and SQL executors.
+• Tool s ca n provi de a ccess to orga ni za ti ona l  da ta ba ses a nd A PI s.
+• Web browsing tools help agents access up-to-date public information.
+• APIs for search, news, and social media extend knowledge coverage.
+10
+Capability Extension T ools
+• Address inherent model limitations, such as poor arithmetic skills.
+• Simple extensions include calculators, calendars, and unit converters.
+• More advanced tools include code interpreters and La T eX renderers.
+• External tools can also make unimodal models multimodal.
+• These extensions boost performance with fewer resources than finetuning.
+11
+Write Action Tools
+• Write actions allow agents to modify their environment.
+• Examples include sending emails, executing SQL updates, or initiating transactions.
+• These actions enable automation of complete workflows.
+• However, write actions increase risks of security breaches or harmful outcomes.
+• Proper safeguards are critical to responsible deployment.
+12
+Planning in Agents
+• Planning determines how agents sequence tool use to complete tasks.
+• Agents must break complex tasks into subtasks and reason step by step.
+• Planning involves both short-term reasoning and long-term strategy.
+• Common methods include chain-of-thought, self-critique, and structured workflows.
+• Strong planners help reduce compound errors across multiple steps.
+13
+Evaluating Agents
+• Agents are more complex to evaluate than static models.
+• Evaluations must consider success rates across multi-step tasks.
+• Key risks include compounding errors, increased costs, and higher latency.
+• Safety evaluation is critical for agents with write actions.
+• Human-in-the-loop monitoring may be necessary in early deployments.
+14
+References
+15
+References
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+16"
+07_finetuning.pdf,"Deploying AI
+Finetuning
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• Finetuning overview
+• Finetuning techniques
+4
+Introduction to Finetuning
+• Finetuning is the process of adapting a model to a specific task by adjusting its
+weights.
+• Unlike prompt engineering or RAG, which guide models via inputs or external context,
+finetuning changes the underlying parameters.
+• It can enhance domain-specific capabilities, improve safety, and strengthen
+instruction-following.
+• Finetuning requires significant resources, including compute, data, and ML expertise.
+• A memory-efficient approach called parameter-efficient finetuning (PEFT)  has
+become dominant.
+5
+Finetuning vs. Prompting
+• Prompt-based methods adapt models by providing instructions, examples, or external
+information.
+• Finetuning directly modifies the model’s weights to embed new behaviors.
+• Prompting requires little ML knowledge, while finetuning requires training expertise.
+• Prompting is usually the first step; finetuning is attempted when prompting is
+insufficient.
+6
+Finetuning Overview
+7
+Transfer Learning Foundations
+• Finetuning is a form of transfer learning .
+• Transfer learning means reusing knowledge from one task to accelerate learning on a
+related task.
+• Foundation models exemplify transfer learning by transferring pre-training knowledge
+to specialized downstream tasks.
+• For example, pretraining on text completion enables adaptation to legal QA, coding, or
+SQL tasks.
+8
+Sample Efficiency
+• Training from scratch requires massive data, often millions of examples.
+• Finetuning leverages existing base model knowledge, reducing the amount of task-
+specific data needed.
+• A few hundred high-quality examples can sometimes be sufficient.
+• This efficiency is one of the key advantages of finetuning over training from scratch.
+9
+Types of Finetuning
+• Continued pretraining (self-supervised finetuning):  extends pretraining with
+domain-specific raw data.
+• Supervised finetuning (SFT):  adapts models with instruction–response pairs.
+• Preference finetuning (RLHF/DPO):  aligns outputs with human preferences.
+• Infilling finetuning:  trains models to fill in blanks, useful for text editing and
+debugging.
+• Long-context finetuning:  extends maximum context length, often requiring
+architectural changes.
+10
+When to Finetune
+11
+Reasons to Finetune
+• Finetuning can improve domain-specific performance when a base model is
+insufficient.
+• It helps enforce strict output formats like JSON or YAML.
+• It can mitigate harmful biases by training on carefully curated datasets.
+• Smaller models can be finetuned to imitate larger ones, enabling efficiency gains
+through distillation .
+• Finetuned small models can outperform larger unadapted models on specialized tasks.
+12
+Examples of Finetuning Benefits
+• Finetuning SQL models for less common dialects or custom queries.
+• Grammarly finetuned Flan-T5 models with 82,000 examples, outperforming a GPT-3
+variant despite being 60× smaller.
+• Bias reduction studies show finetuning can improve fairness across gender and racial
+dimensions.
+• Finetuned models often offer reduced latency and costs compared to larger general-
+purpose models.
+13
+Reasons Not to Finetune
+• Finetuning requires high up-front data, compute, and expertise.
+• A finetuned model may improve at one task but degrade in others.
+• High maintenance is required to keep up with newer, stronger base models.
+• In many cases, well-crafted prompts and RAG can achieve sufficient results.
+• Finetuning should not be the first step; systematic prompting should be tried first.
+14
+Finetuning vs. RAG
+15
+Finetuning vs. RAG: Failures
+• Information-based failures  should be addressed with RAG.
+• Behavioral failures  may require finetuning.
+• RAG provides models with external, up-to-date, or private information.
+• Finetuning improves adherence to formats, styles, and expected outputs.
+• In short: RAG is for facts, finetuning is for form .
+16
+Combining RAG and Finetuning
+• Both methods can complement each other.
+• Studies show RAG often outperforms finetuning for knowledge-heavy tasks.
+• RAG on top of finetuned models can improve performance in some cases.
+• However, sometimes RAG alone is more effective than combining with finetuning.
+• Application developers must evaluate both approaches for their specific use case.
+17
+Memory Bottlenecks
+18
+Why Memory Matters
+• Finetuning is far more memory-intensive than inference.
+• Memory is consumed by weights, activations, gradients, and optimizer states.
+• The number of trainable parameters determines the finetuning memory footprint.
+• Tech ni ques l i ke parameter-efficient finetuning (PEFT)  reduce memory costs.
+• Quantization is another powerful way to lower memory needs.
+19
+Memory Math
+• Inference requires memory primarily for weights and activations.
+• Training requires additional memory for gradients and optimizer states.
+• Example: a 13B model in FP16 needs ~31 GB for inference.
+• With full backpropagation and Adam optimizer, training can require over 100 GB.
+• Gradient checkpointing can reduce memory at the cost of extra compute.
+20
+Numerical Precision
+• Models use floating-point or integer formats to represent values.
+• FP32 (single precision) is memory-heavy; FP16 and BF16 are more efficient.
+• INT8 and INT4 formats are emerging for even greater efficiency.
+• Using the wrong precision format can significantly degrade model quality.
+• Hardware support (GPU/TPU architecture) influences which formats are practical.
+21
+Quantization
+• Quantization reduces precision to shrink memory requirements.
+• A 10B model in FP32 needs 40 GB; the same model in FP16 needs 20 GB.
+• Post-training quantization (PTQ) is the most common approach.
+• Serving models in 8-bit or 4-bit precision is increasingly common.
+• Quantization can be applied to weights, activations, or both.
+22
+Parameter-Efficient Finetuning (PEFT)
+23
+Introduction to PEFT
+• PEFT techniques reduce the number of trainable parameters.
+• They make finetuning feasible on limited hardware.
+• PEFT is widely adopted because it balances performance with efficiency.
+• Examples include adapters, LoRA, and prefix tuning.
+• These methods allow small changes while keeping most parameters frozen.
+24
+Transfer Learning and Fine Tuning
+• In many applications, one cannot access large amounts of labelled text data to train a
+model.
+• Transfer learning allows to apply the information learned from one task to another.
+25
+Transfer Learning and Fine Tuning
+• ULMFit (Howard and Ruder, 2018) proposed the following process for transfer
+learning:
+◦ Body: (a) A network is trained on a general domain corpus. The weights of the
+body learn broad features of the source domain. (b) The full LM is fine-tuned on
+target task data using discriminative fine-tuning and slanted triangular learning
+rates (STLR).
+◦ Head: (c) A classifier trained for a specific task. The classifier is fine-tuned on the
+target task using gradual unfreezing, discriminative fine-tuning and STLR.
+26
+27
+LoRA: Low-Rank Adaptation
+• Fundamental observation: fine-tuning a dense layer only adds a low-rank weight
+matrix (delta-W) to the original weight matrix (W).
+• Fine-tuning can be simplified to train the low-rank weight matrix delta-W, which has
+the same number of weights as the original weight matrix W.
+• The low-rank matrix delta-W can be expressed as the product of two low-rank
+matrices, A and B.
+• Instead of training the full Body  and adding a Head , LoRA requires training a small
+delta-W with fewer parameters.
+• Consequently, LoRA is faster to train and requires less memory.
+28
+29
+Adapter-Based Methods
+• Adapters are small modules inserted into transformer layers.
+• They enable training only a subset of parameters.
+• Performance often approaches full finetuning with far less memory.
+• Adapters can be stacked, shared, or tuned per task.
+• They are one of the most popular PEFT techniques.
+30
+Summary
+31
+Key Takeaways
+• Finetuning modifies model weights, unlike prompting or RAG.
+• It enhances instruction-following, safety, and domain-specific performance.
+• Finetuning is expensive and memory-intensive, requiring careful planning.
+• RAG is often better for information needs, while finetuning is for format and behavior.
+• Memory bottlenecks are mitigated with quantization, mixed precision, and PEFT.
+• Parameter-efficient finetuning, especially adapter-based methods, has become the
+standard.
+32
+References
+33
+References
+• Howard, Jeremy, and Sebastian Ruder. ""Universal language model fine-tuning for text
+classification."" arXiv preprint arXiv:1801.06146 (2018).
+• Hu, Edward J., et al. ""Lora: Low-rank adaptation of large language models."" arXiv
+preprint arXiv:2106.09685 (2021).bridging-the-gap-enhanced-neural-network-
+techniques-for-ai/).
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022.
+34"
+08_dataset_eng.pdf,"Deploying AI
+Data Engineering
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• Data curation
+• Data augmentation and synthesis
+• Data processing
+4
+Dataset Engineering
+• The quality of a model depends heavily on the quality of its training data.
+• Even with infinite compute, a model cannot perform well without appropriate data.
+• Dataset engineering aims to create datasets that allow you to train the best model
+within budget.
+• As models demand more data, dataset handling requires more talent and
+infrastructure investments.
+5
+Data-Centric AI
+• Data-centric AI focuses on improving AI performance through better datasets.
+• Model-centric AI instead emphasizes architectures, model sizes, and training
+techniques.
+• Data-centric practices are increasingly necessary as data becomes the main
+differentiator of performance.
+• High-quality datasets can often matter more than slight architectural improvements.
+6
+Training Phases and Data Needs
+• Different training phases require datasets with different attributes.
+• Pre-training data quantity is measured in tokens.
+• Supervised finetuning data quantity is measured in the number of examples.
+• Post-training data requires curation tailored to application-specific needs.
+7
+Key Aspects of Dataset Engineering
+• Data curation : deciding what data is needed and how much.
+• Data synthesis : generating or augmenting data to fill gaps.
+• Data processing : cleaning, filtering, and preparing data.
+• These steps are iterative and often require going back and forth.
+8
+Data Curation
+• Data should have essential characteristics: compliant, diverse, high quality, and
+sufficient.
+• Compliance means adhering to laws, regulations, and internal policies.
+• Coverage ensures training data represents the variety of real-world problems.
+• High-quality data should exhibit the behaviors you want your model to learn.
+9
+Compliance in Data
+• Training data must comply with relevant policies, including privacy and PII restrictions.
+• Non-compliant data can cause legal, ethical, and operational risks.
+• Thinking through compliance early prevents costly rework later.
+10
+Data Coverage
+• Data should capture the diversity of usage patterns expected in your application.
+• Examples should include long and short instructions, formal and informal queries, and
+multiple languages if relevant.
+• Diversity dimensions include domain, topic, style, and length.
+• Llama 3’s performance gains were largely driven by improvements in data quality and
+diversity.
+11
+Data Quality Challenges
+• High-quality annotations are always difficult to obtain.
+• Chain-of-thought annotations require detailed step-by-step reasoning, which is labor-
+intensive.
+• Tool - use da ta  requi res ca reful  desi gn or si mul a ti on of ta sk executi on.
+• Human annotations may not always align with efficient model usage.
+12
+Experimenting with Small Datasets
+• Finetuning with small datasets (50–100 examples) can still show improvements.
+• Plotting performance against dataset size helps estimate how much data is needed.
+• Gains usually diminish as dataset size grows.
+• Diversity of tasks can matter as much as the number of examples.
+13
+Data Acquisition
+• Sources of data include public datasets, purchased datasets, in-house annotation,
+and synthetic generation.
+• Data acquisition strategies balance quality, diversity, budget, and compliance.
+• User-generated application data often provides the most valuable feedback loop.
+• Building a “data flywheel” can continually improve product performance.
+14
+Annotation Guidelines
+• Annotation requires clear, detailed guidelines to ensure consistency.
+• Guidelines define what makes a response “good” or “bad.”
+• Without strong guidelines, annotation quality may drift over time.
+• Evaluation data guidelines can be reused for annotation purposes.
+15
+Data Augmentation and Synthesis
+• Data augmentation modifies real data to create new examples (e.g., flipping an image).
+• Data synthesis generates artificial data mimicking real properties.
+• Both aim to increase dataset size, diversity, and quality.
+• Synthetic data is increasingly common, especially for post-training.
+16
+Synthetic Data Use Cases
+• Synthetic data can improve quantity  by producing large-scale datasets.
+• It can expand coverage  by creating examples across domains and tasks.
+• It can enhance quality  by balancing distributions and reducing bias.
+• It also helps mitigate privacy risks by replacing sensitive data.
+17
+Instruction Data Synthesis
+• Instruction finetuning requires (instruction, response) pairs.
+• AI can generate instructions, responses, or both.
+• Example: Alpaca used 175 human-written seed pairs and expanded to 52,000 pairs
+with GPT-3.
+• Multi-turn datasets like UltraChat rely heavily on AI synthesis.
+18
+Synthetic Data for Preference Training
+• AI judges can be used to decide which response is better.
+• Biases like first-position bias must be mitigated with careful design.
+• Synthetic preference data reduces reliance on costly human feedback.
+• Validation of synthetic outputs is crucial to prevent error propagation.
+19
+Model Bootstrapping
+• Models can generate data to train smaller or newer models.
+• Example: Nemotron-4 was finetuned using synthetic data generated by a teacher
+model.
+• Verified synthetic data improves performance, while unverified data may degrade it.
+• Bootstrapping requires mechanisms for quality control.
+20
+Data Processing
+• Processing steps include cleaning, deduplication, normalization, and formatting.
+• The order of operations should optimize efficiency.
+• Always validate scripts on small samples before scaling to full datasets.
+• Keeping original data copies helps protect against script errors.
+21
+Inspecting Data
+• Inspecting data provides insights into quality beyond automated checks.
+• Statistical analysis can reveal distribution patterns, lengths, and token usage.
+• Manual inspection often uncovers issues quickly, saving downstream effort.
+• Deduplication prevents biases and test contamination.
+22
+Deduplication Issues
+• Duplicated data skews distributions and inflates model confidence in false
+correlations.
+• It can also cause contamination between training and test sets.
+• Even small duplication rates can significantly degrade performance.
+• Deduplication improves both efficiency and fairness of training.
+23
+Limitations of Synthetic Data
+• Synthetic data cannot fully replace human-generated data.
+• Mixing human and AI data often yields the best results.
+• Poor-quality synthetic data may propagate errors and biases.
+• Careful evaluation is required to ensure synthetic contributions are beneficial.
+24
+Summary of Dataset Engineering
+• Data quality, diversity, and compliance are the foundation of effective AI systems.
+• Data-centric AI emphasizes curating and synthesizing datasets over model tweaks.
+• Synthetic and augmented data offer scalable solutions but require quality controls.
+• Dataset engineering is iterative, requiring constant inspection, evaluation, and
+improvement.
+25
+References
+26
+References
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+27"
+09_optimization.pdf,"Deploying AI
+Optimization and System Design
+$ echo ""Data Sciences Institute""
+1
+Introduction
+2
+Agenda
+3
+Agenda
+• Inference optimization
+• AI engineering architecture
+• User feedback
+4
+Software Products with Embedded AI
+AI models have become generally available through general-purpose software:
+• Generate images, illustrations and video
+• Generate and rewrite text
+• Summarize documents and calls
+• Gather data
+• Review and Write Code
+5
+Initial Stage: Interaction through LLMs Embedded in General
+Purpose Software
+• The simplest form of implementation is to acquire software with embedded AI (MS
+Copilot, ChatGPT, etc).
+• Simple mode of operation.
+• Low barriers to entry diminish the competitive advantage.
+• Guidelines and policies have limited effect over risk exposure.
+6
+Initial Stage
+7
+Challenges in Building Production-Level Applications with LLM
+(1/2)
+Using LLMs:
+• It is easy to create a cool prototype, but difficult to create production-ready software.
+• LLM limitations are exacerbated:
+◦ Lack of engineering rigor in prompt engineering.
+◦ Natural language can be ambiguous.
+◦ It is a newly created field.
+8
+Challenges in Building Production-Level Applications with LLM
+(2/2)
+• Ambiguity occurs in the way prompts are written (by human) and how they are
+interpreted (by LLM). For example:
+◦ Ambiguous output format: downstream applications expect outputs in a certain
+format, which LLMs do not necessarily provide consistently.
+◦ Inconsistency in user experience: LLMs are stochastic, there is no guarantee that
+the model will provide the same output given the same input every time.
+9
+Areas of Enhancement
+• Enhance context input into the model: give the model access to (external) data
+sources and tools for information gathering.
+• Set up guardrails: protect systems and users.
+• Add model router and gateway: support complex pipelines and security.
+• Add cache: optimize for latency and cost.
+• Add complex logic and write actions to maximize capabilities.
+10
+Performance-Driven Development
+Although FMs are a recent evolution in modelling, the principles of building AI enterprise
+applications remain the same:
+• Map business metrics to AI metrics.
+• Systematic experimentation.
+• Experiment with different prompts (equivalent to hyperparameter tuning).
+• Optimize for performance, latency, and cost.
+• Set up feedback loops to iteratively improve our applications.
+11
+Retrieval-Augmented Generation (RAG)
+• Similar to feature engineering in ML, RAG augments each query with necessary
+information.
+• Context construction: gather the relevant information for the query.
+• The more context provided to the model, the less it needs to rely on its training.
+• In-context learning is a form of continual learning. It delays a model from being
+outdated by continually incorporating new information.
+12
+13
+Add Guardrails (1/3)
+Input guardrails
+• The risk of exposing sensitive or private data to external vendors via external model
+APIs arises.
+• Some guardrails include obfuscating personal information (ID numbers, phone, bank
+accounts, etc.), human faces, specific labels, keywords, and phrases that identify
+sensitive information.
+14
+Add Guardrails (2/3)
+Model jailbreaking:
+• Preclude the model from executing queries that can be harmful.
+• Ex.: no SQL queries.
+15
+Add Guardrails (3/3)
+Output guardrails
+• Evaluate the quality of each generation, including empty responses, malformatted
+responses, toxic responses, factual inconsistent responses, responses that contain
+sensitive information, and brand-risk responses.
+• Specify the policy to deal with different failure modes.
+16
+17
+Add Model Router and Gateway
+• A model router selects the best suitable model for the job:
+◦ An intent classifier predicts what the user is trying to do.
+◦ The right model is chosen for the task based on the predicted intent.
+• An intent classifier can also preclude out-of-scope conversations.
+• A model gateway allows the system to interface with different models in a unified and
+secure manner.
+18
+19
+Caching
+• Caching can significantly reduce latency and cost.
+• Prompt cache:
+◦ Store overlapping segments for reuse.
+◦ Application with long system prompts or that involve long documents.
+• Exact cache:
+◦ Cache stores processed items for reuse later.
+◦ Can be used to reduce vector search in embedding-based retrieval.
+• Semantic cache:
+◦ Determines semantic similarity between queries.
+20
+21
+References
+22
+References
+• Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022
+23"
