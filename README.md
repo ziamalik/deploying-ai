@@ -114,6 +114,18 @@ By the end of this module, participants will be able to:
   * [Dmytro Bonislavskyi](https://www.linkedin.com/in/dmytro-bonislavskyi/)
   * [Sergii Khomych](https://www.linkedin.com/in/sergey-khomich-96350088/)
   * [Néstor Rojas](https://www.linkedin.com/in/nestor-rojas-ai/)
+
+
+### Deploying AI (Feb 10 - Feb 27)
+
+**Questions can be submitted to the _help_ channel on Slack**
+
+* Technical Facilitator: 
+  * Salaar Liaqat
+  
+* Learning Support: 
+  * [Dmytro Bonislavskyi](https://www.linkedin.com/in/dmytro-bonislavskyi/)
+  * Vishnou Vinayagame 
   
 
 ## Delivery of the Learning Module
@@ -142,6 +154,24 @@ Participants are encouraged to engage actively during the learning module. The k
 |Live| Feb. 24  | System Optimization |
 |Work| Feb. 27  | Work Period   |
 
+## Deploying AI (Feb 10 - Feb 27)
+
+|Type |Date        |Topic                             |
+|-----|------------|----------------------------------|
+|Live| Feb. 10 | Introduction to AI Engineering|
+|Live| Feb. 11 | Introduction to Foundation Models |
+|Live| Feb. 12 | Evaluating Foundation Models |
+|Work| Feb. 13 | Work Period |
+|Live| Feb. 17 | Prompt Engineering |
+|Live| Feb. 18 | Retrieval Augmented Generation |
+|Live| Feb. 19 | Agents |
+|Work| Feb. 20 | Work Period |
+|Deadline| Feb. 22 | Assignment 1 Due |
+|Live| Feb. 24 | Case Study |
+|Live| Feb. 25 | Fine Tuning |
+|Live| Feb. 26 | Dataset Engineering |
+|Work| Feb. 27 | Work Period |
+|Deadline| Mar. 1 | Assignment 2 Due |
 
 ### Requirements
 * Participants are not expected to have any coding experience; the learning content has been designed for beginners.
